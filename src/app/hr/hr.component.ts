@@ -1,3 +1,4 @@
+import { ConfirmDialogService } from './../confirmation-dialog/shared/confirm-dialog/confirm-dialog.service';
 import { Component, OnInit } from '@angular/core';
 import { faCoffee } from '@fortawesome/free-solid-svg-icons';
 
@@ -9,9 +10,16 @@ import { faCoffee } from '@fortawesome/free-solid-svg-icons';
 export class HrComponent implements OnInit {
   faCoffee = faCoffee
 
-  constructor() { }
+  constructor(private confirmDialogService: ConfirmDialogService) { }
 
   ngOnInit(): void {
   }
 
+  showDialog() {  
+    this.confirmDialogService.confirmThis("Are you sure to delete?", function () {  
+      return true;
+    }, function () {  
+      return false;  
+    })  
+  }  
 }

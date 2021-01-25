@@ -1,3 +1,4 @@
+import { ConfirmationDialogModule } from './../confirmation-dialog/confirmation-dialog.module';
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 
@@ -10,7 +11,8 @@ import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
   imports: [
     CommonModule,
     HrRoutingModule,
-    FontAwesomeModule
+    FontAwesomeModule,
+    ConfirmationDialogModule
   ]
 })
 export class HrModule {
