@@ -1,4 +1,3 @@
-import { TestComponent } from './component/test/test.component';
 import { ErrorPageComponent } from './component/error-page/error-page.component';
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
