@@ -1,4 +1,4 @@
-import { BrowserModule } from '@angular/platform-browser';
+import { EmployeeFormComponent } from './component/employee-form/employee-form.component';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { CUSTOM_ELEMENTS_SCHEMA, NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
@@ -12,15 +12,15 @@ import { EmployeeComponent } from './employee.component';
 @NgModule({
   declarations: [
     EmployeeComponent,
+    EmployeeFormComponent
   ],
   imports: [
     CommonModule,
     EmployeeRoutingModule,
     ConfirmationDialogModule,
     FontAwesomeModule,
-    BrowserModule,
-    ReactiveFormsModule,
-    FormsModule
+    FormsModule,
+    ReactiveFormsModule
   ],
   schemas: [
     CUSTOM_ELEMENTS_SCHEMA

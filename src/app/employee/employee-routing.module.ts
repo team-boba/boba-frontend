@@ -5,13 +5,13 @@ import { Routes, RouterModule } from '@angular/router';
 import { EmployeeComponent } from './employee.component';
 
 const routes: Routes = [
+  {
+    path: 'employee-form',
+    component: EmployeeFormComponent
+  },
   { 
     path: '', 
     component: EmployeeComponent
-  },
-  {
-    path: 'employeeForm',
-    component: EmployeeFormComponent
   }
 ];
 
