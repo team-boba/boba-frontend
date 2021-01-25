@@ -6,7 +6,7 @@ import { HrComponent } from './hr.component';
 const routes: Routes = [
   { 
     path: '', 
-    component: HrComponent 
+    component: HrComponent
   }
 ];
 
