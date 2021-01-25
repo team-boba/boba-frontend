@@ -1,4 +1,6 @@
-import { NgModule } from '@angular/core';
+import { EmployeeFormComponent } from './component/employee-form/employee-form.component';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { CUSTOM_ELEMENTS_SCHEMA, NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 
@@ -8,12 +10,20 @@ import { EmployeeRoutingModule } from './employee-routing.module';
 import { EmployeeComponent } from './employee.component';
 
 @NgModule({
-  declarations: [EmployeeComponent],
+  declarations: [
+    EmployeeComponent,
+    EmployeeFormComponent
+  ],
   imports: [
     CommonModule,
     EmployeeRoutingModule,
     ConfirmationDialogModule,
-    FontAwesomeModule
+    FontAwesomeModule,
+    FormsModule,
+    ReactiveFormsModule
+  ],
+  schemas: [
+    CUSTOM_ELEMENTS_SCHEMA
   ]
 })
 export class EmployeeModule { }
