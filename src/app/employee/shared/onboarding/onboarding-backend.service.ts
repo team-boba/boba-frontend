@@ -6,11 +6,12 @@ import { HttpClient, HttpHeaders } from '@angular/common/http';
   providedIn: 'root'
 })
 export class OnboardingBackendService {
+  private onboardingUrl = '/employee/onboarding';  
 
   constructor(private http: HttpClient) { }
 
   submitOnboardingRequest(onboardingRequest: OnboardingRequest) {
-    const url = '/employee/onboarding/submit';
+    const url = '/api' + this.onboardingUrl + '/submit';
     var headers = new HttpHeaders();
     headers.append('Content-Type', 'application/json; charset=utf-8');
     return this.http.post(url, onboardingRequest, {headers});

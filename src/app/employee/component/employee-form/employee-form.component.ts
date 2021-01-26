@@ -1,11 +1,14 @@
 import { S3bucketService } from './../../../shared/s3bucket/s3bucket.service';
 import { OnboardingRequest } from './../../domain/OnboardingRequest.model';
 import { OnboardingBackendService } from './../../shared/onboarding/onboarding-backend.service';
+import { OnboardingStoreService } from './../../shared/onboarding/onboarding-store.service';
 import { FormValidationService } from './../../../shared/form-validation/form-validation.service';
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, Validators, ValidatorFn } from '@angular/forms';
 import { FormGroup } from '@angular/forms';
 import { EmployeeRequest } from '../../domain/EmployeeRequest.model';
+import { Router } from '@angular/router';
+
 
 @Component({
   selector: 'app-employee-form',
@@ -23,7 +26,9 @@ export class EmployeeFormComponent implements OnInit {
     private fb: FormBuilder,
     private formValidationService: FormValidationService,
     private onboardingBackendService: OnboardingBackendService,
-    private s3bucketService: S3bucketService
+    private onboardingStoreService: OnboardingStoreService,
+    private s3bucketService: S3bucketService,
+    private router: Router
   ) { }
 
   ngOnInit(): void {
@@ -55,9 +60,17 @@ export class EmployeeFormComponent implements OnInit {
 
   onSubmit() {
     console.log(this.employeeForm.value);
-    let onboardingRequest: OnboardingRequest = new OnboardingRequest();
-    onboardingRequest.employeeRequest = this.employeeForm.value;
+    let onboardingRequest: OnboardingRequest;
+
+    this.onboardingStoreService.newCurrentOnboardingRequest();
+    this.onboardingStoreService.setEmployeeOfCurrentOnboardingRequest(this.employeeForm.value);
+    onboardingRequest = this.onboardingStoreService.getCurrentOnboardingRequest();
+
+    // let onboardingRequest: OnboardingRequest = new OnboardingRequest();
+    // onboardingRequest.employeeRequest = this.employeeForm.value;
     this.onboardingBackendService.submitOnboardingRequest(onboardingRequest).subscribe();
+
+    this.router.navigate(['/employee']);
   }
 
   handleFileInput(files: FileList) {
