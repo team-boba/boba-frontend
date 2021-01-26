@@ -1,10 +1,18 @@
 {
-  "/api": {
-    "target": "http://localhost:8080/account/all",
+  "/employee/onboarding/submit": {
+    "target": "http://localhost:8080/employee/onboarding/submit",
     "secure": false,
     "changeOrigin": true,
     "pathRewrite": {
-      "^/api": ""
+      "^/employee/onboarding/submit": ""
+    }
+  },
+  "/bucket/upload": {
+    "target": "http://localhost:8080/bucket/upload",
+    "secure": false,
+    "changeOrigin": true,
+    "pathRewrite": {
+      "^/bucket/upload": ""
     }
   }
 }
