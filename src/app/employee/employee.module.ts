@@ -8,6 +8,7 @@ import { ConfirmationDialogModule } from './../confirmation-dialog/confirmation-
 
 import { EmployeeRoutingModule } from './employee-routing.module';
 import { EmployeeComponent } from './employee.component';
+import { HttpClientModule } from '@angular/common/http';
 
 @NgModule({
   declarations: [
@@ -20,7 +21,8 @@ import { EmployeeComponent } from './employee.component';
     ConfirmationDialogModule,
     FontAwesomeModule,
     FormsModule,
-    ReactiveFormsModule
+    ReactiveFormsModule,
+    HttpClientModule
   ],
   schemas: [
     CUSTOM_ELEMENTS_SCHEMA

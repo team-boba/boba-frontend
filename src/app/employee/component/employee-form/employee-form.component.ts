@@ -1,7 +1,11 @@
+import { S3bucketService } from './../../../shared/s3bucket/s3bucket.service';
+import { OnboardingRequest } from './../../domain/OnboardingRequest.model';
+import { OnboardingBackendService } from './../../shared/onboarding/onboarding-backend.service';
 import { FormValidationService } from './../../../shared/form-validation/form-validation.service';
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, Validators, ValidatorFn } from '@angular/forms';
 import { FormGroup } from '@angular/forms';
+import { EmployeeRequest } from '../../domain/EmployeeRequest.model';
 
 @Component({
   selector: 'app-employee-form',
@@ -12,9 +16,14 @@ export class EmployeeFormComponent implements OnInit {
   visaTypes = ['h1b', 'opt', 'greencard'];
   personNames = ['henry', 'angelina', 'boba'];
 
+  avatarFormData: FormData;
+  avatarUrl: string;
+
   constructor(
     private fb: FormBuilder,
-    private formValidationService: FormValidationService
+    private formValidationService: FormValidationService,
+    private onboardingBackendService: OnboardingBackendService,
+    private s3bucketService: S3bucketService
   ) { }
 
   ngOnInit(): void {
@@ -46,12 +55,32 @@ export class EmployeeFormComponent implements OnInit {
 
   onSubmit() {
     console.log(this.employeeForm.value);
+    let onboardingRequest: OnboardingRequest = new OnboardingRequest();
+    onboardingRequest.employeeRequest = this.employeeForm.value;
+    this.onboardingBackendService.submitOnboardingRequest(onboardingRequest).subscribe();
   }
 
   handleFileInput(files: FileList) {
-    this.employeeForm.patchValue({
-      avatar: files.item(0)
-    })
+    let formData = new FormData();
+    let file: File = files.item(0);
+    formData.append('file', file);
+
+    this.avatarFormData = formData;
+  }
+
+  async uploadFile() {
+    if (!this.avatarFormData || this.avatarUrl) {
+      alert("Not available");
+      return;
+    }
+
+    let s3Response = await this.s3bucketService.uploadFile(this.avatarFormData);
+    if (s3Response.serviceStatus.success) {
+      this.employeeForm.patchValue({
+        avatar: s3Response.fileUrl
+      });
+      this.avatarUrl = s3Response.fileUrl;
+    }
   }
 
   validateEndDate(): ValidatorFn {
