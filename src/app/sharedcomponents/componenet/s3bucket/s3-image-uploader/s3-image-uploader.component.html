@@ -1,0 +1,12 @@
+<div class="form-group row">
+    <div class="col-3">
+        <label>{{label}}</label>
+        <input type="file" accept="image/x-png,image/gif,image/jpeg"
+            [disabled]="imageS3Url"
+            (change)="handleFileInput($event.target.files)" class="form-control-file">
+        <span class="btn btn-outline-success my-2" (click)="uploadFile()">Upload image</span>
+    </div>
+    <div class="col-9 mt-3 border-2 border-dark">
+        <img *ngIf="imageS3Url" src={{imageS3Url}} width="120" height="120">
+    </div>
+</div>

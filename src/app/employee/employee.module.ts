@@ -1,3 +1,4 @@
+import { SharedcomponentsModule } from './../sharedcomponents/sharedcomponents.module';
 import { EmployeeFormComponent } from './component/employee-form/employee-form.component';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { CUSTOM_ELEMENTS_SCHEMA, NgModule } from '@angular/core';
@@ -22,7 +23,8 @@ import { HttpClientModule } from '@angular/common/http';
     FontAwesomeModule,
     FormsModule,
     ReactiveFormsModule,
-    HttpClientModule
+    HttpClientModule,
+    SharedcomponentsModule
   ],
   schemas: [
     CUSTOM_ELEMENTS_SCHEMA
