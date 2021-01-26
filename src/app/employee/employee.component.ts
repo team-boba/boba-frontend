@@ -9,6 +9,7 @@ import { faCoffee } from '@fortawesome/free-solid-svg-icons';
 })
 export class EmployeeComponent implements OnInit {
   faCoffee = faCoffee
+  testDocLabel: string = "Test Doc";
 
   constructor(private confirmDialogService: ConfirmDialogService) { }
 
@@ -22,4 +23,8 @@ export class EmployeeComponent implements OnInit {
       alert(false);  
     })  
   }  
+
+  onTestDocUploadedToS3Event(url) {
+    console.log(url);
+  }
 }

@@ -11,6 +11,8 @@ import { ModalModule } from 'ngx-bootstrap/modal';
 import { CollapseModule } from 'ngx-bootstrap/collapse';
 import { TooltipModule } from 'ngx-bootstrap/tooltip';
 import { ErrorPageComponent } from './component/error-page/error-page.component';
+import { CommonModule } from '@angular/common';
+import { SharedcomponentsModule } from './sharedcomponents/sharedcomponents.module';
 
 @NgModule({
   declarations: [
@@ -18,6 +20,7 @@ import { ErrorPageComponent } from './component/error-page/error-page.component'
     ErrorPageComponent
   ],
   imports: [
+    CommonModule,
     BrowserModule,
     AppRoutingModule,
     BrowserAnimationsModule,
@@ -26,9 +29,10 @@ import { ErrorPageComponent } from './component/error-page/error-page.component'
     HttpClientModule,
     ModalModule.forRoot(),
     CollapseModule.forRoot(),
-    TooltipModule.forRoot()
+    TooltipModule.forRoot(),
+    SharedcomponentsModule
   ],
   providers: [],
-  bootstrap: [AppComponent]
+  bootstrap: [AppComponent],
 })
 export class AppModule { }
