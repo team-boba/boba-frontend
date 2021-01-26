@@ -13,7 +13,6 @@ export class OnboardingBackendService {
     const url = '/employee/onboarding/submit';
     var headers = new HttpHeaders();
     headers.append('Content-Type', 'application/json; charset=utf-8');
-    // return this.http.post(url, onboardingRequest, {headers});
     return this.http.post(url, onboardingRequest, {headers});
   }
 }
