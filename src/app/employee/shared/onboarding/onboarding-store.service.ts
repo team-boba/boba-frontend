@@ -10,6 +10,7 @@ import { map, catchError, tap } from 'rxjs/operators';
   providedIn: 'root'
 })
 export class OnboardingStoreService {
+  userId: number;
 
   constructor() { }
 

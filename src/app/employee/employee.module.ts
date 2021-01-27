@@ -13,6 +13,7 @@ import { HttpClientModule } from '@angular/common/http';
 import { PersonFormComponent } from './component/person-form/person-form.component';
 // import { ContactFormComponent } from './component/contact-form/contact-form.component';
 import { AddressFormComponent } from './component/address-form/address-form.component';
+import { EmployeeHomeComponent } from './component/employee-home/employee-home.component';
 
 @NgModule({
   declarations: [
@@ -20,7 +21,8 @@ import { AddressFormComponent } from './component/address-form/address-form.comp
     EmployeeFormComponent,
     PersonFormComponent,
     // ContactFormComponent,
-    AddressFormComponent
+    AddressFormComponent,
+    EmployeeHomeComponent
   ],
   imports: [
     CommonModule,
