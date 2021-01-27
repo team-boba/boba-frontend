@@ -60,14 +60,9 @@ export class EmployeeFormComponent implements OnInit {
 
   onSubmit() {
     console.log(this.employeeForm.value);
-    let onboardingRequest: OnboardingRequest;
 
-    this.onboardingStoreService.newCurrentOnboardingRequest();
     this.onboardingStoreService.setEmployeeOfCurrentOnboardingRequest(this.employeeForm.value);
-    onboardingRequest = this.onboardingStoreService.getCurrentOnboardingRequest();
-
-    // let onboardingRequest: OnboardingRequest = new OnboardingRequest();
-    // onboardingRequest.employeeRequest = this.employeeForm.value;
+    let onboardingRequest: OnboardingRequest = this.onboardingStoreService.getCurrentOnboardingRequest();
     this.onboardingBackendService.submitOnboardingRequest(onboardingRequest).subscribe();
 
     this.router.navigate(['/employee']);

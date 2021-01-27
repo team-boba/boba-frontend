@@ -1,6 +1,6 @@
 import { PersonFormComponent } from './component/person-form/person-form.component';
 import { AddressFormComponent } from './component/address-form/address-form.component';
-import { ContactFormComponent } from './component/contact-form/contact-form.component';
+// import { ContactFormComponent } from './component/contact-form/contact-form.component';
 import { EmployeeFormComponent } from './component/employee-form/employee-form.component';
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
@@ -16,10 +16,10 @@ const routes: Routes = [
     path: 'address-form',
     component: AddressFormComponent
   },
-  {
-    path: 'contact-form',
-    component: ContactFormComponent
-  },
+  // {
+  //   path: 'contact-form',
+  //   component: ContactFormComponent
+  // },
   {
     path: 'employee-form',
     component: EmployeeFormComponent
