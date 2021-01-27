@@ -1,9 +1,13 @@
 import { OnboardingRequest } from './../../domain/OnboardingRequest.model';
 import { OnboardingBackendService } from './../../shared/onboarding/onboarding-backend.service';
+import { OnboardingStoreService } from './../../shared/onboarding/onboarding-store.service';
 import { FormValidationService } from './../../../shared/form-validation/form-validation.service';
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, Validators, ValidatorFn } from '@angular/forms';
 import { FormGroup } from '@angular/forms';
+import { EmployeeRequest } from '../../domain/EmployeeRequest.model';
+import { Router } from '@angular/router';
+
 
 @Component({
   selector: 'app-employee-form',
@@ -19,7 +23,9 @@ export class EmployeeFormComponent implements OnInit {
   constructor(
     private fb: FormBuilder,
     private formValidationService: FormValidationService,
-    private onboardingBackendService: OnboardingBackendService
+    private onboardingBackendService: OnboardingBackendService,
+    private onboardingStoreService: OnboardingStoreService,
+    private router: Router
   ) { }
 
   ngOnInit(): void {
@@ -51,9 +57,12 @@ export class EmployeeFormComponent implements OnInit {
 
   onSubmit() {
     console.log(this.employeeForm.value);
-    let onboardingRequest: OnboardingRequest = new OnboardingRequest();
-    onboardingRequest.employeeRequest = this.employeeForm.value;
+
+    this.onboardingStoreService.setEmployeeOfCurrentOnboardingRequest(this.employeeForm.value);
+    let onboardingRequest: OnboardingRequest = this.onboardingStoreService.getCurrentOnboardingRequest();
     this.onboardingBackendService.submitOnboardingRequest(onboardingRequest).subscribe();
+
+    this.router.navigate(['/employee']);
   }
 
   onAvatarImageUploadedToS3Event(url) {

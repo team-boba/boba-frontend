@@ -13,7 +13,7 @@ export class S3bucketService {
   constructor(private http: HttpClient) { }
 
   async uploadFile(formData: FormData) {
-    const url = '/bucket/upload'
+    const url = '/api' + '/bucket/upload';
     let headers = new HttpHeaders();
     headers.append('Content-Type', 'multipart/form-data');
     headers.append('Accept', 'application/json');

@@ -1,0 +1,123 @@
+<div class="my-5">
+    <form [formGroup]="personForm" (ngSubmit)="onSubmit()">
+        <div class="form-group">
+            <label>First name</label>
+            <input type="text" formControlName="firstName" class="form-control" placeholder="Enter first name" required minlength=2>
+            <div 
+                class="alert alert-danger"
+                *ngIf="personFormControls.firstName.invalid && personFormControls.firstName.touched && personFormControls.firstName.errors?.required"
+            >
+                First name is required
+            </div>
+
+            <div 
+                class="alert alert-danger"
+                *ngIf="personFormControls.firstName.invalid && personFormControls.firstName.touched && personFormControls.firstName.errors?.minlength"
+            >
+                First name must be greater than 1 character.
+            </div>
+        </div>
+
+        <div class="form-group">
+            <label>Middle name</label>
+            <input type="text" class="form-control" placeholder="Enter middle name" formControlName="middleName">
+        </div>
+
+        <div class="form-group">
+            <label>Last name</label>
+            <input type="text" formControlName="lastName" class="form-control" placeholder="Enter last name" required minlength=2>
+            <div 
+                class="alert alert-danger"
+                *ngIf="personFormControls.lastName.invalid && personFormControls.lastName.touched && personFormControls.lastName.errors?.required"
+            >
+                Last name is required
+            </div>
+
+            <div 
+                class="alert alert-danger"
+                *ngIf="personFormControls.lastName.invalid && personFormControls.lastName.touched && personFormControls.lastName.errors?.minlength"
+            >
+                Last name must be greater than 1 character.
+            </div>
+        </div>
+
+        <div class="form-group">
+            <label>Email</label>
+            <input type="email" formControlName="email" class="form-control" placeholder="Enter email">
+            <div *ngIf="(personFormControls.email.invalid && personFormControls.email.touched) || personFormControls.email.dirty">
+                <small *ngIf="personFormControls.email.errors?.required" class="alert alert-danger">Email address is required</small>
+                <small *ngIf="personFormControls.email.errors?.pattern" class="alert alert-danger">Please provide a valid email address</small>
+              </div>
+        </div>
+
+        <div class="form-group">
+            <label>Cellphone number</label>
+            <input type="text" formControlName="cellPhone" class="form-control" placeholder="Enter cellphone number" required minlength=10>
+            <div 
+                class="alert alert-danger"
+                *ngIf="personFormControls.cellPhone.invalid && personFormControls.cellPhone.touched && personFormControls.cellPhone.errors?.required"
+            >
+                Cellphone number is required
+            </div>
+
+            <div 
+                class="alert alert-danger"
+                *ngIf="personFormControls.cellPhone.invalid && personFormControls.cellPhone.touched && personFormControls.cellPhone.errors?.minlength"
+            >
+                Please provide a valid cellphone number.
+            </div>
+        </div>
+
+        <div class="form-group">
+            <label>Work phone number</label>
+            <input type="text" formControlName="alternatePhone" class="form-control" placeholder="Enter alternate phone number" required minlength=10>
+
+            <div 
+                class="alert alert-danger"
+                *ngIf="personFormControls.alternatePhone.invalid && personFormControls.alternatePhone.touched && personFormControls.alternatePhone.errors?.minlength"
+            >
+                Please provide a valid alternate cellphone number.
+            </div>
+        </div>
+
+
+        <div class="form-group">
+            <label>Gender</label>
+            <select class="form-control" formControlName="gender">
+                <option value="">Choose your gender</option>
+                <option *ngFor="let gender of genders" [ngValue]="gender">{{gender}}</option>
+            </select>
+        </div>
+
+        <div class="form-group">
+            <label>SSN</label>
+            <input type="text" formControlName="ssn" class="form-control" placeholder="Enter SSN" required minlength=9>
+            <div 
+                class="alert alert-danger"
+                *ngIf="personFormControls.ssn.invalid && personFormControls.ssn.touched && personFormControls.ssn.errors?.required"
+            >
+                SSN is required
+            </div>
+
+            <div 
+                class="alert alert-danger"
+                *ngIf="personFormControls.ssn.invalid && personFormControls.ssn.touched && personFormControls.ssn.errors?.minlength"
+            >
+                SSN should be nine-digit.
+            </div>
+        </div>
+
+        <div class="form-group">
+            <label>Date of birth</label>
+            <input type="date" class="form-control" formControlName="dob" required>
+            <div 
+                class="alert alert-danger"
+                *ngIf="personFormControls.dob.invalid && personFormControls.dob.touched && personFormControls.dob.errors?.required"
+            >
+                Date of birth is required.
+            </div>
+        </div>
+
+        <button type="submit" class="btn btn-outline-warning" [disabled]="!personForm.valid">Next</button>
+    </form>
+</div> 
