@@ -1,3 +1,4 @@
+import { EmployeeHomeComponent } from './component/employee-home/employee-home.component';
 import { PersonFormComponent } from './component/person-form/person-form.component';
 import { AddressFormComponent } from './component/address-form/address-form.component';
 // import { ContactFormComponent } from './component/contact-form/contact-form.component';
@@ -21,8 +22,8 @@ const routes: Routes = [
     component: EmployeeFormComponent
   },
   { 
-    path: '', 
-    component: EmployeeComponent
+    path: ':userId',
+    component: EmployeeHomeComponent
   }
 ];
 

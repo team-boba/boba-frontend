@@ -1,3 +1,4 @@
+import { Address } from './Address.model';
 import { Contact } from './Contact.model';
 import { Employee } from './Employee.model';
 
@@ -10,9 +11,11 @@ export class Person {
     public cellphone: string;
     public alternatePhone: string;
     public gender: string;
-    public SSN: string;
-    public DOB: string;
     public userId: number;
     public contacts: [Contact];
+    public address: Address;
     public employee: Employee;
+    public ssn: string;
+    public dob: string;
+    
 } 

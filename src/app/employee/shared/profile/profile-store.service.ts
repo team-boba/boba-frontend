@@ -1,15 +1,14 @@
 import { Router } from '@angular/router';
 import { ProfileBackendService } from './profile-backend.service';
-import { Person } from './../../domain/Person/Person.model';
 import { Injectable } from '@angular/core';
 import { BehaviorSubject } from 'rxjs';
+import { Person } from '../../domain/profile/Person.model';
 
 @Injectable({
   providedIn: 'root'
 })
 export class ProfileStoreService {
   userId: number;
-  houseId: number;
   person$: BehaviorSubject<Person> = new BehaviorSubject(null);
   
   constructor(
@@ -17,9 +16,8 @@ export class ProfileStoreService {
     private router: Router
   ) { }
 
-  setUserIdHouseId(userId: number, houseId: number) {
+  setUserId(userId: number) {
     this.userId = userId;
-    this.houseId = houseId;
   }
 
   loadPerson(userId: number) {
@@ -31,7 +29,7 @@ export class ProfileStoreService {
             this.person$.next(person);
             console.log(this.person$.getValue())
           } else {
-            alert("You have not start onboarding application.");
+            alert("You have not started your onboarding application.");
             this.router.navigate(['/employee/person-form']);
           }
         },
