@@ -14,5 +14,13 @@
     "pathRewrite": {
       "^/bucket/upload": ""
     }
+  },
+  "/bucket/download": {
+    "target": "http://localhost:8080/bucket/download",
+    "secure": false,
+    "changeOrigin": true,
+    "pathRewrite": {
+      "^/bucket/download": ""
+    }
   }
 }
