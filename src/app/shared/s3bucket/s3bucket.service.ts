@@ -21,7 +21,7 @@ export class S3bucketService {
   }
 
   downloadFile(fileName: string): Observable<any> {
-    const url = '/bucket/download';
+    const url = '/api' + '/bucket/download';
     let headers = new HttpHeaders();
     headers.append('Content-Type', 'application/json');
     const options = { responseType: 'blob' as 'json', headers:headers }
