@@ -1,4 +1,3 @@
-import { S3bucketService } from './../../../shared/s3bucket/s3bucket.service';
 import { OnboardingRequest } from './../../domain/OnboardingRequest.model';
 import { OnboardingBackendService } from './../../shared/onboarding/onboarding-backend.service';
 import { OnboardingStoreService } from './../../shared/onboarding/onboarding-store.service';
@@ -19,15 +18,13 @@ export class EmployeeFormComponent implements OnInit {
   visaTypes = ['h1b', 'opt', 'greencard'];
   personNames = ['henry', 'angelina', 'boba'];
 
-  avatarFormData: FormData;
-  avatarUrl: string;
+  avatarLabel: string = "Avatar";
 
   constructor(
     private fb: FormBuilder,
     private formValidationService: FormValidationService,
     private onboardingBackendService: OnboardingBackendService,
     private onboardingStoreService: OnboardingStoreService,
-    private s3bucketService: S3bucketService,
     private router: Router
   ) { }
 
@@ -68,27 +65,10 @@ export class EmployeeFormComponent implements OnInit {
     this.router.navigate(['/employee']);
   }
 
-  handleFileInput(files: FileList) {
-    let formData = new FormData();
-    let file: File = files.item(0);
-    formData.append('file', file);
-
-    this.avatarFormData = formData;
-  }
-
-  async uploadFile() {
-    if (!this.avatarFormData || this.avatarUrl) {
-      alert("Not available");
-      return;
-    }
-
-    let s3Response = await this.s3bucketService.uploadFile(this.avatarFormData);
-    if (s3Response.serviceStatus.success) {
-      this.employeeForm.patchValue({
-        avatar: s3Response.fileUrl
-      });
-      this.avatarUrl = s3Response.fileUrl;
-    }
+  onAvatarImageUploadedToS3Event(url) {
+    this.employeeForm.patchValue({
+      avatar: url
+    });
   }
 
   validateEndDate(): ValidatorFn {

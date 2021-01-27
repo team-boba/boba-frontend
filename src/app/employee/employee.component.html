@@ -5,3 +5,12 @@
 
 <button class="btn btn-primary" (click)="showDialog()">Show Dialog</button>
 <app-confirm-dialog></app-confirm-dialog>  
+
+<app-s3-doc-uploader [label]="testDocLabel" (docUploadedToS3Event)='onTestDocUploadedToS3Event($event)' ></app-s3-doc-uploader>
+
+<app-s3-doc-downloader 
+    [title]="testTitle" 
+    [description]="testDescription" 
+    [s3FileName]="testS3FileName"
+    [s3FileUrl]="testS3FileUrl"
+></app-s3-doc-downloader>
