@@ -16,10 +16,6 @@ const routes: Routes = [
     path: 'address-form',
     component: AddressFormComponent
   },
-  // {
-  //   path: 'contact-form',
-  //   component: ContactFormComponent
-  // },
   {
     path: 'employee-form',
     component: EmployeeFormComponent
