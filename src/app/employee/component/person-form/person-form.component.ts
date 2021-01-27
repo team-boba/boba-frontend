@@ -14,16 +14,12 @@ import { Router } from '@angular/router';
 export class PersonFormComponent implements OnInit {
   genders = ['Male', 'Female', 'I do not wish to answer'];
 
-  email = new FormControl('', [
-    Validators.required,
-    Validators.pattern('^[a-z0-9._%+-]+@[a-z0-9.-]+\\.[a-z]{2,4}$')]);
-
   personForm = this.fb.group({
     firstName: ['', [Validators.required]],
     lastName: ['', [Validators.required]],
     middleName: [''],
     email: ['', [Validators.required]],
-    cellPhone: ['', [Validators.required]],
+    cellPhone: ['', [Validators.required, Validators.pattern('^[a-z0-9._%+-]+@[a-z0-9.-]+\\.[a-z]{2,4}$')]],
     alternatePhone: [''],
     gender: [''],
     ssn: ['', [Validators.required]],
