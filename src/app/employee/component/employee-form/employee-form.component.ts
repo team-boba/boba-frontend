@@ -15,7 +15,7 @@ import { Router } from '@angular/router';
   styleUrls: ['./employee-form.component.css'],
 })
 export class EmployeeFormComponent implements OnInit {
-  visaTypes = ['h1b', 'opt', 'greencard'];
+  visaTypes = ['Green Card','Citizen','H1-B', 'L2', 'F1(CPT/OPT)','H4'];
   personNames = ['henry', 'angelina', 'boba'];
 
   avatarLabel: string = "Avatar";
@@ -59,10 +59,10 @@ export class EmployeeFormComponent implements OnInit {
     console.log(this.employeeForm.value);
 
     this.onboardingStoreService.setEmployeeOfCurrentOnboardingRequest(this.employeeForm.value);
-    let onboardingRequest: OnboardingRequest = this.onboardingStoreService.getCurrentOnboardingRequest();
-    this.onboardingBackendService.submitOnboardingRequest(onboardingRequest).subscribe();
+    // let onboardingRequest: OnboardingRequest = this.onboardingStoreService.getCurrentOnboardingRequest();
+    // this.onboardingBackendService.submitOnboardingRequest(onboardingRequest).subscribe();
 
-    this.router.navigate(['/employee']);
+    this.router.navigate(['/employee/contact-form']);
   }
 
   onAvatarImageUploadedToS3Event(url) {
