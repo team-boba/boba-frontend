@@ -10,7 +10,7 @@ import { FormValidationService } from 'src/app/shared/form-validation/form-valid
 })
 export class GenerateTokenComponent implements OnInit {
   validDurationOptions = [15, 30, 60];
-  houseIds = [1, 2, 3];
+  houseIdOptions = [1, 2, 3];
 
   constructor(
     private fb: FormBuilder,
@@ -24,7 +24,7 @@ export class GenerateTokenComponent implements OnInit {
   generateTokenForm = this.fb.group({
     email: ['', [Validators.required, Validators.pattern('^[a-z0-9._%+-]+@[a-z0-9.-]+\\.[a-z]{2,4}$')]],
     validDuration: ['', [Validators.required, this.formValidationService.selectionNotEmptyValidator()]],
-    houseIds: ['', [Validators.required, this.formValidationService.selectionNotEmptyValidator()]]
+    houseId: ['', [Validators.required, this.formValidationService.selectionNotEmptyValidator()]]
   });
 
   get generateTokenFormControls() {

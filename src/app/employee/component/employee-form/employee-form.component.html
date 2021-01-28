@@ -64,7 +64,7 @@
                 </select>
                 <div 
                     class="alert alert-danger"
-                    *ngIf="employeeFormControls.visaType.invalid && employeeFormControls.visaType.touched && employeeFormControls.visaType.errors?.selectionNotEmpty"
+                    *ngIf="visaStatusControls.visaType.invalid && visaStatusControls.visaType.touched && visaStatusControls.visaType.errors?.selectionNotEmpty"
                 >
                     Must select a valid option.
                 </div>

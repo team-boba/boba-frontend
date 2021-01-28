@@ -25,13 +25,13 @@
 
         <div class="form-group">
             <label>Assign house id for employee</label>
-            <select class="form-control" formControlName="houseIds" required>
+            <select class="form-control" formControlName="houseId" required>
                 <option value="">--option--</option>
-                <option *ngFor="let houseId of houseIds" [ngValue]="houseId">{{houseId}}</option>
+                <option *ngFor="let houseId of houseIdOptions" [ngValue]="houseId">{{houseId}}</option>
             </select>
             <div 
                 class="alert alert-danger"
-                *ngIf="generateTokenFormControls.houseIds.invalid && generateTokenFormControls.houseIds.touched && generateTokenFormControls.houseIds.errors?.selectionNotEmpty"
+                *ngIf="generateTokenFormControls.houseId.invalid && generateTokenFormControls.houseId.touched && generateTokenFormControls.houseId.errors?.selectionNotEmpty"
             >
                 Must select a valid option.
             </div>
