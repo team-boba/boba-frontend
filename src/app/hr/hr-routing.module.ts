@@ -1,3 +1,4 @@
+import { GenerateTokenComponent } from './component/generate-token/generate-token.component';
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
 
@@ -17,6 +18,10 @@ const routes: Routes = [
   {
     path: 'application-detail/:applicationId',
     component: ApplicationDetailComponent
+  },
+  { 
+    path: 'generate-token',
+    component: GenerateTokenComponent
   },
   { 
     path: '', 

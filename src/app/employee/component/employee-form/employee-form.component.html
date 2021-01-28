@@ -62,6 +62,12 @@
                     <option value="">Choose your visa status</option>
                     <option *ngFor="let visaType of visaTypes" [ngValue]="visaType">{{visaType}}</option>
                 </select>
+                <div 
+                    class="alert alert-danger"
+                    *ngIf="visaStatusControls.visaType.invalid && visaStatusControls.visaType.touched && visaStatusControls.visaType.errors?.selectionNotEmpty"
+                >
+                    Must select a valid option.
+                </div>
             </div>
             
             <div *ngIf="visaStatusControls.visaType.value" class="form-group ml-5">

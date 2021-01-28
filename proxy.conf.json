@@ -5,5 +5,12 @@
     "pathRewrite": {
       "^/api": ""
     }
+  },
+  "/2api": {
+    "target": "http://localhost:9999",
+    "secure": false,
+    "pathRewrite": {
+      "^/2api": ""
+    }
   }
 }

@@ -9,20 +9,24 @@ import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 import { HireManagementComponent } from './component/hire-management/hire-management.component';
 import { ApplicationDetailComponent } from './component/application-detail/application-detail.component';
 import { UpdateStatusComponent } from './component/hire-management/update-status/update-status.component';
+import { GenerateTokenComponent } from './component/generate-token/generate-token.component';
 
 @NgModule({
   declarations: [
     HrComponent,
     HireManagementComponent,
     ApplicationDetailComponent,
-    UpdateStatusComponent
+    UpdateStatusComponent,
+    GenerateTokenComponent
   ],
   imports: [
     FormsModule,
     CommonModule,
     HrRoutingModule,
     FontAwesomeModule,
-    ConfirmationDialogModule
+    ConfirmationDialogModule,
+    FormsModule,
+    ReactiveFormsModule,
   ],
   schemas: [
     CUSTOM_ELEMENTS_SCHEMA

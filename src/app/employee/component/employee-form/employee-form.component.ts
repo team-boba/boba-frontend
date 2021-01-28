@@ -39,7 +39,7 @@ export class EmployeeFormComponent implements OnInit {
     avatar: [''],
     car: [''],
     visaStatus: this.fb.group({
-      visaType: [''],
+      visaType: ['', this.formValidationService.selectionNotEmptyValidator()],
       visaStartDate: [''],
       visaEndDate: ['']
     }),
