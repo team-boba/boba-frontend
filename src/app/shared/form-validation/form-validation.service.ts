@@ -34,4 +34,10 @@ export class FormValidationService {
       return control.value>beforeDate ? {'dateBefore': {value: control.value}} : null;
     };
   }
+
+  selectionNotEmptyValidator(): ValidatorFn {
+    return (control: AbstractControl): {[key: string]: any} | null => {
+      return control.value==='' ? {'selectionNotEmpty': {value: control.value}} : null;
+    };
+  }
 }
