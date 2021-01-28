@@ -1,7 +1,7 @@
 import { OnboardingStoreService } from './../../shared/onboarding/onboarding-store.service';
 import { ProfileStoreService } from './../../shared/profile/profile-store.service';
 import { Component, OnInit } from '@angular/core';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Params } from '@angular/router';
 
 @Component({
   selector: 'app-employee-home',
@@ -17,13 +17,12 @@ export class EmployeeHomeComponent implements OnInit {
   ) { }
 
   ngOnInit(): void {
-    let userId = this.route.snapshot.params['userId'];
-    let houseId = this.route.snapshot.queryParams['houseId'];
-    this.onboardingStoreService.setUserId(userId);
-    this.onboardingStoreService.setHouseId(houseId);
-
-    this.profileStoreService.setUserId(userId);
-    this.profileStoreService.loadPerson(userId);
+    this.route.params.subscribe((params: Params)=>{
+      this.onboardingStoreService.userId = params['userId'];
+      this.onboardingStoreService.houseId = params['houseId'];
+      this.profileStoreService.userId = params['userId'];
+      this.profileStoreService.loadPerson(params['userId']);
+    });
   }
 
 }

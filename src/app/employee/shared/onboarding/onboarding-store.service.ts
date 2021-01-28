@@ -48,12 +48,4 @@ export class OnboardingStoreService {
   getCurrentOnboardingRequest() {
     return this.currentOnboardingRequest;
   }
-
-  setUserId(userId: number) {
-    this.userId = userId;
-  }
-
-  setHouseId(houseId: number) {
-    this.houseId = houseId;
-  }
 }

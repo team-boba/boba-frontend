@@ -59,9 +59,6 @@ export class EmployeeFormComponent implements OnInit {
     console.log(this.employeeForm.value);
 
     this.onboardingStoreService.setEmployeeOfCurrentOnboardingRequest(this.employeeForm.value);
-    // let onboardingRequest: OnboardingRequest = this.onboardingStoreService.getCurrentOnboardingRequest();
-    // this.onboardingBackendService.submitOnboardingRequest(onboardingRequest).subscribe();
-
     this.router.navigate(['/employee/contact-form']);
   }
 
