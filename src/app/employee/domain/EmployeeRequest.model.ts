@@ -7,4 +7,5 @@ export class EmployeeRequest {
     public visaStatus: {}
     public driverLicense: string;
     public driverLicenseExpirationDate: string;
+    public houseId: number;
 }

@@ -12,6 +12,8 @@ import { map, catchError, tap } from 'rxjs/operators';
   providedIn: 'root'
 })
 export class OnboardingStoreService {
+  userId: number;
+  houseId: number;
 
   constructor() { }
 
@@ -22,10 +24,12 @@ export class OnboardingStoreService {
   }
 
   setEmployeeOfCurrentOnboardingRequest(employeeReq: EmployeeRequest) {
+    employeeReq.houseId = this.houseId;
     this.currentOnboardingRequest.employeeRequest = employeeReq;
   }
 
   setPersonOfCurrentOnboardingRequest(personRequest: PersonRequest) {
+    personRequest.userId = this.userId;
     this.currentOnboardingRequest.personRequest = personRequest;
   }
 
@@ -44,5 +48,4 @@ export class OnboardingStoreService {
   getCurrentOnboardingRequest() {
     return this.currentOnboardingRequest;
   }
-
 }
