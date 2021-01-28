@@ -46,7 +46,7 @@ export class PersonalDocumentFormComponent implements OnInit {
     let onboardingSubmittedResponse = await this.onboardingBackendService.submitOnboardingRequest(onboardingRequest);
     if (onboardingSubmittedResponse.serviceStatus.success) {
       alert("Onboarding application successfully submitted!");
-      this.router.navigate(['/employee/'+onboardingSubmittedResponse.userId]);
+      window.location.href = '/employee/'+onboardingSubmittedResponse.userId;
     } else {
       alert("Onboarding application failed, start new application.");
       this.router.navigate(['/employee/person-form']);

@@ -1,7 +1,7 @@
 import { Router } from '@angular/router';
 import { ProfileBackendService } from './profile-backend.service';
 import { Injectable } from '@angular/core';
-import { BehaviorSubject } from 'rxjs';
+import { BehaviorSubject, Observable } from 'rxjs';
 import { Person } from '../../domain/profile/Person.model';
 
 @Injectable({
@@ -16,6 +16,10 @@ export class ProfileStoreService {
     private profileBackendService: ProfileBackendService,
     private router: Router
   ) { }
+
+  getPerson(): Observable<Person> {
+    return this.person$.asObservable();
+  }
 
   loadPerson(userId: number) {
     this.profileBackendService.getPersonResponse(userId)
