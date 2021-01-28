@@ -1,3 +1,4 @@
+import { VisaStatusManagementComponent } from './component/visa-status-management/visa-status-management.component';
 import { SharedcomponentsModule } from './../sharedcomponents/sharedcomponents.module';
 import { EmployeeFormComponent } from './component/employee-form/employee-form.component';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
@@ -20,7 +21,8 @@ import { AddressFormComponent } from './component/address-form/address-form.comp
     EmployeeFormComponent,
     PersonFormComponent,
     // ContactFormComponent,
-    AddressFormComponent
+    AddressFormComponent,
+    VisaStatusManagementComponent
   ],
   imports: [
     CommonModule,
