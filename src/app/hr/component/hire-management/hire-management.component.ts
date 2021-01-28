@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { HireStoreService } from './../../shared/hire/hire-store.service';
 import { Observable } from 'rxjs';
-import { ApplicationWorkflow } from './../../domain/application-workflow.model';
+import { ApplicationWorkflowRequest } from '../../domain/application-workflow-request.model';
 
 @Component({
   selector: 'app-hire-management',
@@ -9,13 +9,13 @@ import { ApplicationWorkflow } from './../../domain/application-workflow.model';
   styleUrls: ['./hire-management.component.css']
 })
 export class HireManagementComponent implements OnInit {
-  applicationWorkflows$: Observable<ApplicationWorkflow[]>;
+  applicationWorkflowRequests$: Observable<ApplicationWorkflowRequest[]>;
   comments = '';
   status = '';
 
   constructor(private hireStoreService: HireStoreService) { }
 
   ngOnInit(): void {
-    this.applicationWorkflows$ = this.hireStoreService.getApplicationWorkflows();
+    this.applicationWorkflowRequests$ = this.hireStoreService.getApplicationWorkflows();
   }
 }

@@ -7,7 +7,6 @@ import { HrRoutingModule } from './hr-routing.module';
 import { HrComponent } from './hr.component';
 import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 import { HireManagementComponent } from './component/hire-management/hire-management.component';
-import { ApplicationDetailComponent } from './component/application-detail/application-detail.component';
 import { UpdateStatusComponent } from './component/hire-management/update-status/update-status.component';
 import { GenerateTokenComponent } from './component/generate-token/generate-token.component';
 
@@ -15,7 +14,6 @@ import { GenerateTokenComponent } from './component/generate-token/generate-toke
   declarations: [
     HrComponent,
     HireManagementComponent,
-    ApplicationDetailComponent,
     UpdateStatusComponent,
     GenerateTokenComponent
   ],

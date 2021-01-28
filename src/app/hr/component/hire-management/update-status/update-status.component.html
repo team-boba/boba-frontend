@@ -1,22 +1,44 @@
 <table>
     <tr>
         <td>Application Id :</td>
-        <td>{{applicationWorkFlow.id}}</td>
+        <td>{{applicationWorkflowRequest.id}}</td>
+    </tr>
+    <tr>
+        <td>First Name :</td>
+        <td>{{applicationWorkflowRequest.firstName}}</td>
+    </tr>
+    <tr>
+        <td>Last Name :</td>
+        <td>{{applicationWorkflowRequest.lastName}}</td>
+    </tr>
+    <tr>
+        <td>Middle Name :</td>
+        <td>{{applicationWorkflowRequest.middleName}}</td>
+    </tr>
+    <tr>
+        <td>Email :</td>
+        <td>{{applicationWorkflowRequest.email}}</td>
     </tr>
     <tr>
         <td>Created Date :</td>
-        <td>{{applicationWorkFlow.createdDate}}</td>
+        <td>{{applicationWorkflowRequest.createdDate}}</td>
     </tr>
     <tr>
         <td>Modification Date :</td>
-        <td>{{applicationWorkFlow.modificationDate}}</td>
+        <td>{{applicationWorkflowRequest.modificationDate}}</td>
     </tr>
     <tr>
         <td>Type :</td>
-        <td>{{applicationWorkFlow.type}}</td>
+        <td>{{applicationWorkflowRequest.type}}</td>
     </tr>
 
 </table>
+
+<button
+class="btn btn-primary"
+(click)="onViewDetail()">View Detail</button>
+
+<br><br>
 
 <div class="form-group">
     <label for="comments">Comments</label>
@@ -42,36 +64,3 @@
 <button
 class="btn btn-primary"
 (click)="onUpdate()">Update Status</button>
-
-<br><br>
-<h4>Person</h4>
-<table>
-    <tr>
-        <td>First Name :</td>
-        <td>{{person.firstName}}</td>
-    </tr>
-    <tr>
-        <td>Last Name :</td>
-        <td>{{person.lastName}}</td>
-    </tr>
-    <tr>
-        <td>Email :</td>
-        <td>{{person.email}}</td>
-    </tr>
-
-    <tr>
-        <td>Cellphone :</td>
-        <td>{{person.cellphone}}</td>
-    </tr>
-
-    <tr>
-        <td>AlternatePhone :</td>
-        <td>{{person.alternatePhone}}</td>
-    </tr>
-
-    <tr>
-        <td>Gender :</td>
-        <td>{{person.gender}}</td>
-    </tr>
-
-</table>

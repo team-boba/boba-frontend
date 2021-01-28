@@ -4,7 +4,6 @@ import { Routes, RouterModule } from '@angular/router';
 
 import { HrComponent } from './hr.component';
 import { HireManagementComponent } from './component/hire-management/hire-management.component';
-import { ApplicationDetailComponent } from './component/application-detail/application-detail.component';
 import { UpdateStatusComponent } from './component/hire-management/update-status/update-status.component';
 
 const routes: Routes = [
@@ -14,10 +13,6 @@ const routes: Routes = [
     children: [
       { path: ':id', component: UpdateStatusComponent}
     ]
-  },
-  {
-    path: 'application-detail/:applicationId',
-    component: ApplicationDetailComponent
   },
   { 
     path: 'generate-token',

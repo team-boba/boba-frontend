@@ -1,34 +1,12 @@
 <div class="row">
   <div class="col-xs-12 col-sm-3">
-    <!-- <table class="table table-white">
-      <thead>
-        <tr>
-          <th scope="col">id</th>
-          <th scope="col">Status</th>
-          <th scope="col">Comments</th>
-          <th scope="col">Type</th>
-          <th scope="col">Update</th>
-        </tr>
-      </thead>
-      <tbody>
-        <tr *ngFor="let applicationWorkflow of applicationWorkflows$ | async; let pos=index;" [ngClass]="applicationWorkflow.status==='pending' ? []:['mute-text']">
-          <th scope="row"><a routerLink="/hr/application-detail/{{applicationWorkflow.id}}">{{applicationWorkflow.id}}</a></th>
-          <td>{{applicationWorkflow.status}}</td>
-          <td>{{applicationWorkflow.comments}}</td>
-          <td>{{applicationWorkflow.type}}</td>
-          <td><a [routerLink]="['hire', applicationWorkflow.id]">Update</a></td>
-          
-        </tr>
-      </tbody>
-    </table> -->
-
     <div class="list-group">
       <a
         [routerLink]="['/hr/hire', applicationWorkflow.id]"
         fragment="loading"
         href="#"
         class="list-group-item"
-        *ngFor="let applicationWorkflow of applicationWorkflows$ | async">
+        *ngFor="let applicationWorkflow of applicationWorkflowRequests$ | async">
         {{ applicationWorkflow.id }}. {{applicationWorkflow.type}} - {{applicationWorkflow.status}}
       </a>
     </div>

@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { ApplicationWorkflowResponse } from './../../domain/application-workflow-response.model';
-import { ApplicationWorkflow } from './../../domain/application-workflow.model';
+import { ApplicationWorkflowRequest } from '../../domain/application-workflow-request.model';
 import { BehaviorSubject, Observable } from 'rxjs';
 import { HireBackendService } from './hire-backend.service';
 import { Person } from '../../../employee/domain/profile/Person.model';
@@ -13,10 +13,10 @@ import { filter, map } from 'rxjs/operators';
   providedIn: 'root'
 })
 export class HireStoreService {
-  private applicationWorkflows: BehaviorSubject<ApplicationWorkflow[]> = new BehaviorSubject([]); // all the application flows
+  private applicationWorkflowRequests: BehaviorSubject<ApplicationWorkflowRequest[]> = new BehaviorSubject([]); // all the application flows
   
   applicationId: number;
-  person$: BehaviorSubject<Person> = new BehaviorSubject(null); // application details
+  // person$: BehaviorSubject<Person> = new BehaviorSubject(null); // application details
 
   constructor(
     private hireBackendService: HireBackendService,
@@ -29,21 +29,25 @@ export class HireStoreService {
     this.hireBackendService.getAllApplicationWorkflows()
       .subscribe(
           (data) => {
-            // console.log(data)
 
             if (data.serviceStatus.success) {
-              let applicationWorkflows = data.applicationWorkflows.map(applicationWorkflow => {
-                return new ApplicationWorkflow(
-                  applicationWorkflow.id,
-                  applicationWorkflow.createdDate,
-                  applicationWorkflow.modificationDate,
-                  applicationWorkflow.status,
-                  applicationWorkflow.comments,
-                  applicationWorkflow.type
+              let applicationWorkflowRequests = data.applicationWorkflowRequests.map(applicationWorkflowRequest => {
+                return new ApplicationWorkflowRequest(
+                  applicationWorkflowRequest.id,
+                  applicationWorkflowRequest.createdDate,
+                  applicationWorkflowRequest.modificationDate,
+                  applicationWorkflowRequest.status,
+                  applicationWorkflowRequest.comments,
+                  applicationWorkflowRequest.type,
+                  applicationWorkflowRequest.userId,
+                  applicationWorkflowRequest.firstName,
+                  applicationWorkflowRequest.lastName,
+                  applicationWorkflowRequest.middleName,
+                  applicationWorkflowRequest.email
                 );
               });
 
-              this.applicationWorkflows.next(applicationWorkflows);
+              this.applicationWorkflowRequests.next(applicationWorkflowRequests);
             }
           },
           err => console.log("Error retrieving applicationWorkflows")
@@ -51,50 +55,34 @@ export class HireStoreService {
   }
 
   getApplicationWorkflows() {
-    return this.applicationWorkflows.asObservable();
+    return this.applicationWorkflowRequests.asObservable();
   }
 
-  // getApplicationWorkflow(id: number) {
-  //   this.applicationWorkflows.subscribe
-  //   const crisis = this.applicationWorkflows.find(
-  //     (s) => {
-  //       return s.id === id;
-  //     }
-  //   );
-  //   return crisis;
-  // }
-  // getApplicationWorkflow(id: number): Observable<ApplicationWorkflow> {
-  //   return this.applicationWorkflows
-  //     .pipe(
-  //       filter((item: ApplicationWorkflow) => item.id === id)
-  //     )
-  // }
-
-  getApplicationWorkflow(id: number): Observable<ApplicationWorkflow> {
-    return this.applicationWorkflows.pipe(
+  getApplicationWorkflow(id: number): Observable<ApplicationWorkflowRequest> {
+    return this.applicationWorkflowRequests.pipe(
       map(items => items.find(item => item.id === id)),
     );
   }
 
   // get application detail
-  loadPerson(applicationId: number) {
-    this.hireBackendService.getApplicationDetail(applicationId)
-      .subscribe(
-        (personResponse) => {
-          if (personResponse.serviceStatus.success) {
-            let person = personResponse.person;
-            this.person$.next(person);
-            // console.log(this.person$.getValue())
-          } else {
-            alert("Cannot get the onboarding application. ApplicationId: " + this.applicationId );
-            this.router.navigate(['/hr/hire']);
-          }
-        },
-        err => console.log("error retrieving person with applicationId.")
-      )
-  }
+  // loadPerson(applicationId: number) {
+  //   this.hireBackendService.getApplicationDetail(applicationId)
+  //     .subscribe(
+  //       (personResponse) => {
+  //         if (personResponse.serviceStatus.success) {
+  //           let person = personResponse.person;
+  //           this.person$.next(person);
+  //           // console.log(this.person$.getValue())
+  //         } else {
+  //           alert("Cannot get the onboarding application. ApplicationId: " + this.applicationId );
+  //           this.router.navigate(['/hr/hire']);
+  //         }
+  //       },
+  //       err => console.log("error retrieving person with applicationId.")
+  //     )
+  // }
 
-  getPerson(): Observable<Person> {
-    return this.person$.asObservable();
-  }
+  // getPerson(): Observable<Person> {
+  //   return this.person$.asObservable();
+  // }
 }

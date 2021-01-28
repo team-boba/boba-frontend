@@ -1,7 +1,7 @@
 import { ServiceStatus } from './../../domain/ServiceStatus.model';
-import { ApplicationWorkflow } from './application-workflow.model';
+import { ApplicationWorkflowRequest } from './application-workflow-request.model';
 
 export class ApplicationWorkflowResponse {
     public serviceStatus: ServiceStatus;
-    public applicationWorkflows: ApplicationWorkflow[];
+    public applicationWorkflowRequests: ApplicationWorkflowRequest[];
 }
