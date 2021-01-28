@@ -1,6 +1,6 @@
 <div class="row">
-  <div class="col-xs-12 col-sm-4">
-    <table class="table table-white">
+  <div class="col-xs-12 col-sm-3">
+    <!-- <table class="table table-white">
       <thead>
         <tr>
           <th scope="col">id</th>
@@ -12,7 +12,6 @@
       </thead>
       <tbody>
         <tr *ngFor="let applicationWorkflow of applicationWorkflows$ | async; let pos=index;" [ngClass]="applicationWorkflow.status==='pending' ? []:['mute-text']">
-          <!-- <th scope="row">{{pos+1}}</th> -->
           <th scope="row"><a routerLink="/hr/application-detail/{{applicationWorkflow.id}}">{{applicationWorkflow.id}}</a></th>
           <td>{{applicationWorkflow.status}}</td>
           <td>{{applicationWorkflow.comments}}</td>
@@ -21,21 +20,20 @@
           
         </tr>
       </tbody>
-    </table>
+    </table> -->
 
-    <!-- <div class="list-group">
+    <div class="list-group">
       <a
-        [routerLink]="['/hire', applicationWorkflow.id]"
-  
+        [routerLink]="['/hr/hire', applicationWorkflow.id]"
         fragment="loading"
         href="#"
         class="list-group-item"
         *ngFor="let applicationWorkflow of applicationWorkflows$ | async">
-        {{ applicationWorkflow.id }}. {{applicationWorkflow.type}} {{applicationWorkflow.status}}
+        {{ applicationWorkflow.id }}. {{applicationWorkflow.type}} - {{applicationWorkflow.status}}
       </a>
     </div>
-  </div> -->
-  <div class="col-xs-12 col-sm-4">
+  </div>
+  <div class="col-xs-12 col-sm-6">
     <router-outlet></router-outlet>
   </div>
 </div>

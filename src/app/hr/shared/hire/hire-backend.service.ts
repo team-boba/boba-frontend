@@ -3,6 +3,7 @@ import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { ApplicationWorkflowResponse } from './../../domain/application-workflow-response.model';
 import { BehaviorSubject, Observable } from 'rxjs';
 import { PersonResponse } from './../../../employee/domain/profile/PersonResponse.model'
+import { ApplicationWorkflow } from './../../domain/application-workflow.model';
 
 @Injectable({
   providedIn: 'root'
@@ -30,4 +31,10 @@ export class HireBackendService {
   //       // catchError(this.handleError('PersonResponse', personResponse))
   //     );
   // }
+  public updateApplicationStatus(applicationWorkflow: ApplicationWorkflow) {
+    const url = '/api' + this.hireUrl + '/application-review/update';
+    var headers = new HttpHeaders();
+    headers.append('Content-Type', 'application/json; charset=utf-8');
+    return this.http.post<ApplicationWorkflow>(url, applicationWorkflow, {headers});
+  }
 }

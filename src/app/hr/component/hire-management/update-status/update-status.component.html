@@ -1,5 +1,25 @@
+<table>
+    <tr>
+        <td>Application Id :</td>
+        <td>{{applicationWorkFlow.id}}</td>
+    </tr>
+    <tr>
+        <td>Created Date :</td>
+        <td>{{applicationWorkFlow.createdDate}}</td>
+    </tr>
+    <tr>
+        <td>Modification Date :</td>
+        <td>{{applicationWorkFlow.modificationDate}}</td>
+    </tr>
+    <tr>
+        <td>Type :</td>
+        <td>{{applicationWorkFlow.type}}</td>
+    </tr>
+
+</table>
+
 <div class="form-group">
-    <label for="comments">comments</label>
+    <label for="comments">Comments</label>
     <input
       type="text"
       id="comments"
@@ -13,8 +33,9 @@
         id="status"
         class="form-control"
         [(ngModel)]="status">
-        <option value="Rejected">Rejected</option>
-        <option value="Completed">Completed</option>
+        <option value="rejected">Rejected</option>
+        <option value="completed">Completed</option>
+        <option value="pending">Pending</option>
     </select>
 </div>
 
@@ -22,14 +43,39 @@
 class="btn btn-primary"
 (click)="onUpdate()">Update Status</button>
 
-<!-- <h5>Hero Id: {{ hero.id }}</h5>
-<h5>Hero Name: {{ heroName }}</h5>
-<div class="form-group">
-    <label for="name">Change Hero Name:</label>
-    <input
-      type="text"
-      id="name"
-      class="form-control"
-      [(ngModel)]="heroName">
-</div>
-<button class="btn btn-primary" (click)="goBack()">Go Back</button> -->
+<br><br>
+<h4>Person</h4>
+<table>
+    <tr>
+        <td>First Name :</td>
+        <td>{{person.firstName}}</td>
+    </tr>
+    <tr>
+        <td>Last Name :</td>
+        <td>{{person.lastName}}</td>
+    </tr>
+    <tr>
+        <td>Middle Name :</td>
+        <td>{{person.middleName}}</td>
+    </tr>
+    <tr>
+        <td>Email :</td>
+        <td>{{person.email}}</td>
+    </tr>
+
+    <tr>
+        <td>Cellphone :</td>
+        <td>{{person.cellphone}}</td>
+    </tr>
+
+    <tr>
+        <td>AlternatePhone :</td>
+        <td>{{person.alternatePhone}}</td>
+    </tr>
+
+    <tr>
+        <td>Gender :</td>
+        <td>{{person.gender}}</td>
+    </tr>
+
+</table>

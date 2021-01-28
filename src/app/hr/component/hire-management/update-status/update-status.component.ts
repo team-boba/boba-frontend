@@ -1,9 +1,11 @@
 import { Component, OnInit } from '@angular/core';
 import { ApplicationWorkflow } from './../../../domain/application-workflow.model';
 import { HireStoreService} from './../../../shared/hire/hire-store.service'
+import { HireBackendService} from './../../../shared/hire/hire-backend.service'
 import { Router, ActivatedRoute, Params } from '@angular/router';
 import { Location } from '@angular/common';
 import { Observable } from 'rxjs';
+import { Person } from '../../../../employee/domain/profile/Person.model';
 
 @Component({
   selector: 'app-update-status',
@@ -11,37 +13,86 @@ import { Observable } from 'rxjs';
   styleUrls: ['./update-status.component.css']
 })
 export class UpdateStatusComponent implements OnInit {
-  // applicationWorkflow$: Observable<ApplicationWorkflow>;
-
-  // applicationWorkflow: ApplicationWorkflow;
-  comments = '';
-  status = 'Rejected';
+  person$: Observable<Person>;
+  person: Person;
+  applicationWorkFlow$: Observable<ApplicationWorkflow>;
+  applicationWorkFlow: ApplicationWorkflow;
   applicationId: number;
+  comments = '';
+  status = 'pending';
 
-  constructor(private hireStoreService: HireStoreService,
+  constructor(
+    private hireStoreService: HireStoreService,
+    private hireBackendService: HireBackendService,
     private route: ActivatedRoute,
     private router: Router,
-    private location: Location) { }
+    private location: Location
+  ) { }
 
   ngOnInit(): void {
-    this.applicationId = +this.route.snapshot.params['id'];
-    // this.applicationWorkflow$ = this.hireStoreService.getApplicationWorkflow(id);
-    
-    // this.route.params
-    // .subscribe(
-    //   (params: Params) => {
-    //     this.applicationWorkflow$ = this.hireStoreService.getApplicationWorkflow(+params['id']);
-    //   }
-    // );
+    const id = +this.route.snapshot.params['id'];
+    this.applicationId = id;
+    this.hireStoreService.applicationId = id;
+    this.hireStoreService.loadPerson(id);
+    this.person$ = this.hireStoreService.getPerson();
+
+    this.getPersonData();
+    console.log(this.person);
+    this.getCurrentApplication();
+    this.comments = this.applicationWorkFlow.comments;
+    this.status = this.applicationWorkFlow.status;
+
+    this.route.params
+      .subscribe(
+        (params: Params) => {
+          this.applicationId = +params['id'];
+          this.hireStoreService.applicationId = +params['id'];
+          this.hireStoreService.loadPerson(+params['id']);
+          this.person$ = this.hireStoreService.getPerson();
+
+          this.getPersonData();
+          this.getCurrentApplication();
+          this.comments = this.applicationWorkFlow.comments;
+          this.status = this.applicationWorkFlow.status;
+        }
+      );
   }
 
+  getPersonData() {
+    this.person$.subscribe(
+      response => {
+        // console.log(response);
+        this.person = response;
+      },
+      err => console.error('Observer got an error: ' + err),
+      () => console.log('Observer got a complete notification')
+    );
+  }
+
+  getCurrentApplication() {
+    this.hireStoreService.getApplicationWorkflow(this.applicationId).subscribe(
+      response => {
+        // console.log(response);
+        this.applicationWorkFlow = response;
+      },
+      err => console.error('Observer got an error: ' + err),
+      () => console.log('Observer got a complete notification')
+    );
+
+  }
+  
   onUpdate() {
     console.log(this.applicationId);
     console.log(this.comments);
     console.log(this.status);
-    // this.serversService.updateServer(this.server.id, {name: this.serverName, status: this.serverStatus});
+
+    // this.applicationWorkFlow = new ApplicationWorkflow(this.applicationId, '', '', this.status, this.comments, '');
+    this.applicationWorkFlow.comments = this.comments;
+    this.applicationWorkFlow.status = this.status;
+
+    this.hireBackendService.updateApplicationStatus(this.applicationWorkFlow).subscribe();;
     // this.changesSaved = true;
-    // this.router.navigate(['../'], {relativeTo: this.route});
+    this.router.navigate(['/hr/hire']);
   }
 
 }

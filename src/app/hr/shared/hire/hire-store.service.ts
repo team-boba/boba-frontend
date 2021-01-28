@@ -70,11 +70,11 @@ export class HireStoreService {
   //     )
   // }
 
-  // getApplicationWorkflow(id: number): Observable<ApplicationWorkflow> {
-  //   return this.applicationWorkflows.pipe(
-  //     map(items => items.find(item => item.id === id)),
-  //   );
-  // }
+  getApplicationWorkflow(id: number): Observable<ApplicationWorkflow> {
+    return this.applicationWorkflows.pipe(
+      map(items => items.find(item => item.id === id)),
+    );
+  }
 
   // get application detail
   loadPerson(applicationId: number) {
@@ -84,7 +84,7 @@ export class HireStoreService {
           if (personResponse.serviceStatus.success) {
             let person = personResponse.person;
             this.person$.next(person);
-            console.log(this.person$.getValue())
+            // console.log(this.person$.getValue())
           } else {
             alert("Cannot get the onboarding application. ApplicationId: " + this.applicationId );
             this.router.navigate(['/hr/hire']);
