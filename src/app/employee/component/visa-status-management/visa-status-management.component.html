@@ -35,7 +35,7 @@
 
 
 <div *ngIf="status === 'signed-i-983'">
-  <p>Next step: Please send the I-983 with all necessary documents to your school and upload the new I-20</p>
+  <p>Next step: Please send the HR signed I-983 with all necessary documents to your school and upload the new I-20</p>
   <br/>
   <app-s3-doc-uploader label="New I-20" (docUploadedToS3Event)='getUploadFile($event)'></app-s3-doc-uploader>
 </div>
@@ -53,3 +53,4 @@
   <app-s3-doc-uploader label="OPT STEM EAD"></app-s3-doc-uploader>
 </div>
 
+<button class="btn btn-primary" (click)="clickSave()">Save</button>

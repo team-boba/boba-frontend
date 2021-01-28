@@ -1,3 +1,5 @@
+import { VisaStatusService } from './../../shared/visa-status/visa-status.service';
+import { ConfirmDialogService } from './../../../confirmation-dialog/shared/confirm-dialog/confirm-dialog.service';
 import { ActivatedRoute } from '@angular/router';
 import { Component, OnInit } from '@angular/core';
 
@@ -8,22 +10,37 @@ import { Component, OnInit } from '@angular/core';
 })
 export class VisaStatusManagementComponent implements OnInit {
   
-  uploadFileUrl = "https://s3.us-west-1.amazonaws.com/beaconfire-team-boba/1611805266280-ethantests3file.pdf";
+  uploadFileUrl = "";
   
   singnedI983= "1611806726895-ethantests3file.pdf";
   singnedI983URL = "https://s3.us-west-1.amazonaws.com/beaconfire-team-boba/1611806726895-ethantests3file.pdf"
  
   status="signed-i-983";
 
-  constructor(private route : ActivatedRoute){}
+  constructor(private route : ActivatedRoute,
+              private confirmDialogService : ConfirmDialogService,
+              private visaStatusService: VisaStatusService
+              ){}
 
   ngOnInit() {
     // this.status = this.route.snapshot.paramMap.get('visaStatus');
   }
 
+  showDialogUpdateVisaStatus() {  
+    this.confirmDialogService.confirmThis("Save changes?", function () {  
+      alert(true);
+      // this.visaStatusService
+    }, function () {  
+      alert(false);  
+    })  
+  }  
+
+  clickSave(){
+      this.showDialogUpdateVisaStatus();
+  }
 
   getUploadFile(url){
-    console.log(url);
+    this.uploadFileUrl = url;
   }
   
 
