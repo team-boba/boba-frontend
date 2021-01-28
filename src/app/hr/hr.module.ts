@@ -5,10 +5,12 @@ import { CommonModule } from '@angular/common';
 import { HrRoutingModule } from './hr-routing.module';
 import { HrComponent } from './hr.component';
 import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
+import { HireManagementComponent } from './component/hire-management/hire-management.component';
 
 @NgModule({
   declarations: [
-    HrComponent
+    HrComponent,
+    HireManagementComponent
   ],
   imports: [
     CommonModule,
