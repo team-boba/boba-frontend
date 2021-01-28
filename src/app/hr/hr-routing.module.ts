@@ -1,9 +1,14 @@
+import { GenerateTokenComponent } from './component/generate-token/generate-token.component';
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
 
 import { HrComponent } from './hr.component';
 
 const routes: Routes = [
+  {
+    path: 'generate-token',
+    component: GenerateTokenComponent
+  },
   { 
     path: '', 
     component: HrComponent
