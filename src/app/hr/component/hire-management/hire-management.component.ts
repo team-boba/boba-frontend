@@ -10,6 +10,8 @@ import { ApplicationWorkflow } from './../../domain/application-workflow.model';
 })
 export class HireManagementComponent implements OnInit {
   applicationWorkflows$: Observable<ApplicationWorkflow[]>;
+  comments = '';
+  status = '';
 
   constructor(private hireStoreService: HireStoreService) { }
 
@@ -17,4 +19,13 @@ export class HireManagementComponent implements OnInit {
     this.applicationWorkflows$ = this.hireStoreService.getApplicationWorkflows();
   }
 
+  onUpdate(event, index: number, comments:string, status:string) {
+    console.log(index);
+    console.log(comments);
+    console.log(status);
+
+    // this.crisisListService.updateCrisis(this.crisis.id, this.crisisName);
+    // this.changesSaved = true;
+    // this.router.navigate(['../'], {relativeTo: this.route});
+  }
 }

@@ -1,0 +1,35 @@
+<div class="form-group">
+    <label for="comments">comments</label>
+    <input
+      type="text"
+      id="comments"
+      class="form-control"
+      [(ngModel)]="comments">
+</div>
+
+<div class="form-group">
+    <label for="status">Status</label>
+    <select
+        id="status"
+        class="form-control"
+        [(ngModel)]="status">
+        <option value="Rejected">Rejected</option>
+        <option value="Completed">Completed</option>
+    </select>
+</div>
+
+<button
+class="btn btn-primary"
+(click)="onUpdate()">Update Status</button>
+
+<!-- <h5>Hero Id: {{ hero.id }}</h5>
+<h5>Hero Name: {{ heroName }}</h5>
+<div class="form-group">
+    <label for="name">Change Hero Name:</label>
+    <input
+      type="text"
+      id="name"
+      class="form-control"
+      [(ngModel)]="heroName">
+</div>
+<button class="btn btn-primary" (click)="goBack()">Go Back</button> -->
