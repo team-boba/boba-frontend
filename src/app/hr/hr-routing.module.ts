@@ -1,3 +1,4 @@
+import { HouseManagementComponent } from './component/house-management/house-management.component';
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
 
@@ -7,6 +8,10 @@ const routes: Routes = [
   { 
     path: '', 
     component: HrComponent
+  },
+  {
+    path: '/houseManagement',
+    component: HouseManagementComponent
   }
 ];
 

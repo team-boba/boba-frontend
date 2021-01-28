@@ -5,10 +5,14 @@ import { CommonModule } from '@angular/common';
 import { HrRoutingModule } from './hr-routing.module';
 import { HrComponent } from './hr.component';
 import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
+import { HouseManagementComponent } from './component/house-management/house-management.component';
+import { HouseInfoComponent } from './component/house-management/house-info/house-info.component';
 
 @NgModule({
   declarations: [
-    HrComponent
+    HrComponent,
+    HouseManagementComponent,
+    HouseInfoComponent
   ],
   imports: [
     CommonModule,
