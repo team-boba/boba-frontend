@@ -1,3 +1,4 @@
+import { OnboardingSubmittedResponse } from './../../domain/OnboardingSubmittedResponse.model';
 import { OnboardingRequest } from './../../domain/OnboardingRequest.model';
 import { Injectable } from '@angular/core';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
@@ -10,10 +11,10 @@ export class OnboardingBackendService {
 
   constructor(private http: HttpClient) { }
 
-  submitOnboardingRequest(onboardingRequest: OnboardingRequest) {
+  async submitOnboardingRequest(onboardingRequest: OnboardingRequest) {
     const url = '/api' + this.onboardingUrl + '/submit';
     var headers = new HttpHeaders();
     headers.append('Content-Type', 'application/json; charset=utf-8');
-    return this.http.post(url, onboardingRequest, {headers});
+    return await this.http.post<OnboardingSubmittedResponse>(url, onboardingRequest, {headers}).toPromise();
   }
 }

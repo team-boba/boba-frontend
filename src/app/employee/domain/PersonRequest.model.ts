@@ -8,4 +8,5 @@ export class PersonRequest {
     gender : string;
     ssn : string;
     dob : string;
+    userId: number;
 }

@@ -40,11 +40,16 @@ export class PersonalDocumentFormComponent implements OnInit {
     this.personDocumentRequest2.path = url;
   }
 
-  onSubmit() {
+  async onSubmit() {
     this.onboardingStoreService.setPersonalDocumentOfCurrentOnboardingRequest([this.personDocumentRequest1, this.personDocumentRequest2]);
     let onboardingRequest: OnboardingRequest = this.onboardingStoreService.getCurrentOnboardingRequest();
-    this.onboardingBackendService.submitOnboardingRequest(onboardingRequest).subscribe();
-
-    this.router.navigate(['/employee']);
+    let onboardingSubmittedResponse = await this.onboardingBackendService.submitOnboardingRequest(onboardingRequest);
+    if (onboardingSubmittedResponse.serviceStatus.success) {
+      alert("Onboarding application successfully submitted!");
+      window.location.href = '/employee/'+onboardingSubmittedResponse.userId;
+    } else {
+      alert("Onboarding application failed, start new application.");
+      this.router.navigate(['/employee/person-form']);
+    }
   }
 }

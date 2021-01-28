@@ -49,9 +49,6 @@ export class ContactFormComponent implements OnInit {
     console.log(this.contactForm.value);
     this.onboardingStoreService.setContactOfCurrentOnboardingRequest(this.contactForm.value);
 
-    let onboardingRequest: OnboardingRequest = this.onboardingStoreService.getCurrentOnboardingRequest();
-    console.log(onboardingRequest.contactRequest);
-
     this.router.navigate(['/employee/personal-document-form']);
   }
 

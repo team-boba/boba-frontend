@@ -1,0 +1,13 @@
+<div *ngIf="person$ | async as person">
+    <h1>
+        {{person.firstName}}
+    </h1>
+    
+    <h1>
+        {{person.lastName}}
+    </h1>
+
+    <h1>
+        {{person.employee.title}}
+    </h1>
+</div>
