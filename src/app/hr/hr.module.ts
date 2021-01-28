@@ -5,16 +5,21 @@ import { CommonModule } from '@angular/common';
 import { HrRoutingModule } from './hr-routing.module';
 import { HrComponent } from './hr.component';
 import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
+import { GenerateTokenComponent } from './component/generate-token/generate-token.component';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 
 @NgModule({
   declarations: [
-    HrComponent
+    HrComponent,
+    GenerateTokenComponent
   ],
   imports: [
     CommonModule,
     HrRoutingModule,
     FontAwesomeModule,
-    ConfirmationDialogModule
+    ConfirmationDialogModule,
+    FormsModule,
+    ReactiveFormsModule,
   ],
   schemas: [
     CUSTOM_ELEMENTS_SCHEMA
