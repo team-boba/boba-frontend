@@ -2,6 +2,8 @@ import { Injectable } from '@angular/core';
 import { EmployeeRequest } from './../../domain/EmployeeRequest.model'
 import { PersonRequest } from './../../domain/PersonRequest.model'
 import { AddressRequest } from './../../domain/AddressRequest.model'
+import { ContactRequest } from './../../domain/ContactRequest.model'
+import { PersonalDocumentRequest } from './../../domain/PersonalDocumentRequest.model'
 import { OnboardingRequest } from './../../domain//OnboardingRequest.model'
 import { Subject } from 'rxjs';
 import { map, catchError, tap } from 'rxjs/operators';
@@ -10,6 +12,8 @@ import { map, catchError, tap } from 'rxjs/operators';
   providedIn: 'root'
 })
 export class OnboardingStoreService {
+  userId: number;
+  houseId: number;
 
   constructor() { }
 
@@ -20,10 +24,12 @@ export class OnboardingStoreService {
   }
 
   setEmployeeOfCurrentOnboardingRequest(employeeReq: EmployeeRequest) {
+    employeeReq.houseId = this.houseId;
     this.currentOnboardingRequest.employeeRequest = employeeReq;
   }
 
   setPersonOfCurrentOnboardingRequest(personRequest: PersonRequest) {
+    personRequest.userId = this.userId;
     this.currentOnboardingRequest.personRequest = personRequest;
   }
 
@@ -31,12 +37,15 @@ export class OnboardingStoreService {
     this.currentOnboardingRequest.addressRequest = addressRequest;
   }
 
-  // setContactOfCurrentOnboardingRequest(contactRequest: ContactRequest) {
-  //   this.currentOnboardingRequest.contactRequest = contactRequest;
-  // }
+  setContactOfCurrentOnboardingRequest(contactRequest: ContactRequest) {
+    this.currentOnboardingRequest.contactRequest = contactRequest;
+  }
+
+  setPersonalDocumentOfCurrentOnboardingRequest(personalDocumentRequests: PersonalDocumentRequest[]) {
+    this.currentOnboardingRequest.personalDocumentRequests = personalDocumentRequests;
+  }
 
   getCurrentOnboardingRequest() {
     return this.currentOnboardingRequest;
   }
-
 }
