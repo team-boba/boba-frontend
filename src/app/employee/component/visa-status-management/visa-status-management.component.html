@@ -13,14 +13,14 @@
   <app-s3-doc-downloader 
     title="I-983 form" 
     description="This is an empty template" 
-    s3FileName="testS3FileName"
-    s3FileUrl="testS3FileUrl"
+    s3FileName="1611711498205-i983.pdf"
+    s3FileUrl="https://s3.us-west-1.amazonaws.com/beaconfire-team-boba/1611711498205-i983.pdf"
 ></app-s3-doc-downloader>
 <app-s3-doc-downloader 
   title="I-983 form" 
   description="This is an sample template with instruction" 
-  s3FileName="testS3FileName"
-  s3FileUrl="testS3FileUrl"
+  s3FileName="1611711498205-i983.pdf"
+  s3FileUrl="https://s3.us-west-1.amazonaws.com/beaconfire-team-boba/1611711498205-i983.pdf"
 ></app-s3-doc-downloader>
 <br/>
   <app-s3-doc-uploader label="Your Completed I-983"></app-s3-doc-uploader>
@@ -36,14 +36,8 @@
 
 <div *ngIf="status === 'signed-i-983'">
   <p>Next step: Please send the I-983 with all necessary documents to your school and upload the new I-20</p>
-  <app-s3-doc-downloader 
-    title="I-983 form" 
-    description="This is HR signed your I-983" 
-    s3FileName="testS3FileName"
-    s3FileUrl="testS3FileUrl"
-></app-s3-doc-downloader>
   <br/>
-  <app-s3-doc-uploader label="New I-20"></app-s3-doc-uploader>
+  <app-s3-doc-uploader label="New I-20" (docUploadedToS3Event)='getUploadFile($event)'></app-s3-doc-uploader>
 </div>
 
 
@@ -54,7 +48,7 @@
 </div>
 
 
-<div *ngIf="status === 'opt-steam-receipt'">
+<div *ngIf="status === 'opt-stem-receipt'">
   <p>Please upload a copy of your OPT STEM EAD</p>
   <app-s3-doc-uploader label="OPT STEM EAD"></app-s3-doc-uploader>
 </div>
