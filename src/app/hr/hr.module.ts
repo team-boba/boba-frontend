@@ -7,6 +7,7 @@ import { HrComponent } from './hr.component';
 import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 import { GenerateTokenComponent } from './component/generate-token/generate-token.component';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { SharedcomponentsModule } from '../sharedcomponents/sharedcomponents.module';
 
 @NgModule({
   declarations: [
@@ -20,6 +21,7 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
     ConfirmationDialogModule,
     FormsModule,
     ReactiveFormsModule,
+    SharedcomponentsModule
   ],
   schemas: [
     CUSTOM_ELEMENTS_SCHEMA

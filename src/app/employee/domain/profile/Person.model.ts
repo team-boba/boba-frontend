@@ -6,7 +6,7 @@ export class Person {
     public id: number;
     public firstName: string;
     public lastName: string;
-    public middelName: string;
+    public middleName: string;
     public email: string;
     public cellphone: string;
     public alternatePhone: string;

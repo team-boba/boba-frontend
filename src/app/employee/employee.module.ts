@@ -16,6 +16,11 @@ import { AddressFormComponent } from './component/address-form/address-form.comp
 import { EmployeeHomeComponent } from './component/employee-home/employee-home.component';
 import { ContactFormComponent } from './component/contact-form/contact-form.component';
 import { PersonalDocumentFormComponent } from './component/personal-document-form/personal-document-form.component';
+import { ProfileNameSectionComponent } from './component/profile-name-section/profile-name-section.component';
+import { ProfileAddressSectionComponent } from './component/profile-address-section/profile-address-section.component';
+import { ProfileContactinfoSectionComponent } from './component/profile-contactinfo-section/profile-contactinfo-section.component';
+import { ProfileEmploymentSectionComponent } from './component/profile-employment-section/profile-employment-section.component';
+import { ProfileDocumentSectionComponent } from './component/profile-document-section/profile-document-section.component';
 
 @NgModule({
   declarations: [
@@ -26,7 +31,12 @@ import { PersonalDocumentFormComponent } from './component/personal-document-for
     AddressFormComponent,
     EmployeeHomeComponent,
     ContactFormComponent,
-    PersonalDocumentFormComponent
+    PersonalDocumentFormComponent,
+    ProfileNameSectionComponent,
+    ProfileAddressSectionComponent,
+    ProfileContactinfoSectionComponent,
+    ProfileEmploymentSectionComponent,
+    ProfileDocumentSectionComponent
   ],
   imports: [
     CommonModule,
