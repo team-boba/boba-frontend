@@ -5,6 +5,7 @@ import { Routes, RouterModule } from '@angular/router';
 import { HrComponent } from './hr.component';
 import { HireManagementComponent } from './component/hire-management/hire-management.component';
 import { UpdateStatusComponent } from './component/hire-management/update-status/update-status.component';
+import { ProfileSummaryComponent } from './component/profile-summary/profile-summary.component';
 
 const routes: Routes = [
   {
@@ -17,6 +18,10 @@ const routes: Routes = [
   { 
     path: 'generate-token',
     component: GenerateTokenComponent
+  },
+  { 
+    path: 'profile',
+    component: ProfileSummaryComponent
   },
   { 
     path: '', 

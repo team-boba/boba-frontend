@@ -1,9 +1,8 @@
 import { Injectable } from '@angular/core';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { ApplicationWorkflowResponse } from './../../domain/application-workflow-response.model';
-import { BehaviorSubject, Observable } from 'rxjs';
-import { PersonResponse } from './../../../employee/domain/profile/PersonResponse.model'
 import { ApplicationWorkflowRequest } from '../../domain/application-workflow-request.model';
+import { Observable } from 'rxjs';
 
 @Injectable({
   providedIn: 'root'
@@ -19,18 +18,6 @@ export class HireBackendService {
     return this.http.get<ApplicationWorkflowResponse>(url);
   }
 
-  // public getApplicationDetail(applicationId: number): Observable<PersonResponse> {
-  //   const url = '/api' + this.hireUrl + '/application-review/' + applicationId;
-  //   return this.http.get<PersonResponse>(url);
-  // }
-
-  // public updateApplicationStatus(applicationId: number, comments: string, status: string, personResponse: PersonResponse): Observable<PersonResponse> {
-  //   const url = '/api' + this.hireUrl + '/application-review/update/' + applicationId + "/" + comments + "/" + ;
-  //   return this.http.post<PersonResponse>(url, personResponse)
-  //     .pipe(
-  //       // catchError(this.handleError('PersonResponse', personResponse))
-  //     );
-  // }
   public updateApplicationStatus(applicationWorkflowRequest: ApplicationWorkflowRequest) {
     const url = '/api' + this.hireUrl + '/application-review/update';
     var headers = new HttpHeaders();
