@@ -44,8 +44,6 @@ const routes: Routes = [
     path: ':userId',
     component: EmployeeHomeComponent
   },
-
-  //employee test path
   {
     path: '',
     component: EmployeeComponent

@@ -32,4 +32,5 @@ export class EmployeeComponent implements OnInit {
   onTestDocUploadedToS3Event(url) {
     console.log(url);
   }
+
 }

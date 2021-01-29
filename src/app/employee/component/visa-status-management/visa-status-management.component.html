@@ -1,56 +1,90 @@
 <p>
   visa-status-management works!
 </p>
-<div *ngIf="status === 'opt-receipt'">
-  <p>Next step: Please upload a copy of your OPT EAD</p>
-  <app-s3-doc-uploader label="OPT EAD"></app-s3-doc-uploader>
+
+<div *ngIf="person$ | async as person">
+    <h3>Hello {{person.firstName}}</h3>
+
+    <div *ngIf="findDocumentByOrder(person.employee.personalDocuments) === 'noFind'">
+      <p>Please upload a copy of your OPT Receipt</p>
+      <app-s3-doc-uploader label="OPT Receipt" (docUploadedToS3Event)='onloadingFile($event)'></app-s3-doc-uploader>
+    </div>
+
+    <div>
+      <div *ngIf="findDocumentByOrder(person.employee.personalDocuments) === 'opt-receipt'">
+      <p>Next step: Please upload a copy of your OPT EAD</p>
+      <app-s3-doc-uploader label="OPT EAD" (docUploadedToS3Event)='onloadingFile($event)'></app-s3-doc-uploader>
+    </div>
+
+
+    <div *ngIf="findDocumentByOrder(person.employee.personalDocuments) === 'opt-ead'">
+      <p>Next step: Please download and fill your I-983 form</p>
+      <app-s3-doc-downloader 
+        title="I-983 form" 
+        description="This is an empty template" 
+        s3FileName="1611711498205-i983.pdf"
+        s3FileUrl="https://s3.us-west-1.amazonaws.com/beaconfire-team-boba/1611711498205-i983.pdf"
+      ></app-s3-doc-downloader>
+      <app-s3-doc-downloader 
+        title="I-983 form" 
+        description="This is an sample template with instruction" 
+        s3FileName="1611711498205-i983.pdf"
+        s3FileUrl="https://s3.us-west-1.amazonaws.com/beaconfire-team-boba/1611711498205-i983.pdf"
+      ></app-s3-doc-downloader>
+      <br/>
+      <app-s3-doc-uploader label="Your Completed I-983" (docUploadedToS3Event)='onloadingFile($event)'></app-s3-doc-uploader>
+    </div>
+
+    <div *ngIf="findDocumentByOrder(person.employee.personalDocuments) === 'i-983'">
+      <p>Waiting for HR to approve and sign I-983</p>
+    </div>
+
+    <div *ngIf="findDocumentByOrder(person.employee.personalDocuments) === 'signed-i-983'">
+      <p>Next step: Please send the HR signed I-983 with all necessary documents to your school and upload the new I-20</p>
+      <br/>
+      <app-s3-doc-uploader label="New I-20" (docUploadedToS3Event)='onloadingFile($event)'></app-s3-doc-uploader>
+    </div>
+
+    <div *ngIf="findDocumentByOrder(person.employee.personalDocuments) === 'new-i-20'">
+      <p>Please upload a copy of your OPT STEM Receipt</p>
+      <app-s3-doc-uploader label="OPT STEM Receipt" (docUploadedToS3Event)='onloadingFile($event)'></app-s3-doc-uploader>
+    </div>
+
+
+    <div *ngIf="findDocumentByOrder(person.employee.personalDocuments) === 'opt-stem-receipt'">
+      <p>Please upload a copy of your OPT STEM EAD</p>
+      <app-s3-doc-uploader label="OPT STEM EAD"></app-s3-doc-uploader>
+    </div>
+
+    <div *ngIf="findDocumentByOrder(person.employee.personalDocuments) === 'opt-stem-ead'">
+      <p>Next step: Please download and fill your I-983 form</p>
+      <app-s3-doc-downloader 
+        title="I-983 form" 
+        description="This is an empty template" 
+        s3FileName="1611711498205-i983.pdf"
+        s3FileUrl="https://s3.us-west-1.amazonaws.com/beaconfire-team-boba/1611711498205-i983.pdf"
+      ></app-s3-doc-downloader>
+    <app-s3-doc-downloader 
+      title="I-983 form" 
+      description="This is an sample template with instruction" 
+      s3FileName="1611711498205-i983.pdf"
+      s3FileUrl="https://s3.us-west-1.amazonaws.com/beaconfire-team-boba/1611711498205-i983.pdf"
+    ></app-s3-doc-downloader>
+    <br/>
+    <app-s3-doc-uploader label="Your Completed I-983" (docUploadedToS3Event)='onloadingFile($event)'></app-s3-doc-uploader>
+    </div>
+
+    <button class="btn btn-primary" (click)="onclickSave(person.firstName, person.employee.id)">Save</button>
+    <br/>
+    <br/>
+    <button class="btn btn-primary" (click)="onclickHome(person.id)">Home</button>
 </div>
 
-
-
-<div *ngIf="status === 'opt-ead'">
-  <p>Next step: Please download and fill your I-983 form</p>
-  <app-s3-doc-downloader 
-    title="I-983 form" 
-    description="This is an empty template" 
-    s3FileName="1611711498205-i983.pdf"
-    s3FileUrl="https://s3.us-west-1.amazonaws.com/beaconfire-team-boba/1611711498205-i983.pdf"
-></app-s3-doc-downloader>
-<app-s3-doc-downloader 
-  title="I-983 form" 
-  description="This is an sample template with instruction" 
-  s3FileName="1611711498205-i983.pdf"
-  s3FileUrl="https://s3.us-west-1.amazonaws.com/beaconfire-team-boba/1611711498205-i983.pdf"
-></app-s3-doc-downloader>
 <br/>
-  <app-s3-doc-uploader label="Your Completed I-983"></app-s3-doc-uploader>
+<br/>
+
+<div *ngIf="uploadResponseStatus$ | async as status">
+  <p *ngIf="status.success; else failBlock">Successful uploaded</p>
+  <ng-template #failBlock>{{status.errorMessage}}</ng-template>
 </div>
 
-
-
-<div *ngIf="status === 'wait-hr'">
-  <p>Waiting for HR to approve and sign I-983</p>
-</div>
-
-
-
-<div *ngIf="status === 'signed-i-983'">
-  <p>Next step: Please send the HR signed I-983 with all necessary documents to your school and upload the new I-20</p>
-  <br/>
-  <app-s3-doc-uploader label="New I-20" (docUploadedToS3Event)='getUploadFile($event)'></app-s3-doc-uploader>
-</div>
-
-
-
-<div *ngIf="status === 'new-i-20'">
-  <p>Please upload a copy of your OPT STEM Receipt</p>
-  <app-s3-doc-uploader label="OPT STEM Receipt"></app-s3-doc-uploader>
-</div>
-
-
-<div *ngIf="status === 'opt-stem-receipt'">
-  <p>Please upload a copy of your OPT STEM EAD</p>
-  <app-s3-doc-uploader label="OPT STEM EAD"></app-s3-doc-uploader>
-</div>
-
-<button class="btn btn-primary" (click)="clickSave()">Save</button>
