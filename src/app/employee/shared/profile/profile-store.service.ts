@@ -15,7 +15,7 @@ export class ProfileStoreService {
   constructor(
     private profileBackendService: ProfileBackendService,
     private router: Router
-  ) { }
+  ) {  }
 
   getPerson(): Observable<Person> {
     return this.person$.asObservable();
