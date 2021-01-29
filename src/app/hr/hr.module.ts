@@ -12,6 +12,7 @@ import { UpdateStatusComponent } from './component/hire-management/update-status
 import { GenerateTokenComponent } from './component/generate-token/generate-token.component';
 import { ProfileSummaryComponent } from './component/profile-summary/profile-summary.component';
 import { SharedcomponentsModule } from '../sharedcomponents/sharedcomponents.module';
+import { VisaStatusManagementComponent } from './component/visa-status-management/visa-status-management.component';
 
 @NgModule({
   declarations: [
@@ -19,7 +20,8 @@ import { SharedcomponentsModule } from '../sharedcomponents/sharedcomponents.mod
     HireManagementComponent,
     UpdateStatusComponent,
     GenerateTokenComponent,
-    ProfileSummaryComponent
+    ProfileSummaryComponent,
+    VisaStatusManagementComponent
   ],
   imports: [
     FormsModule,

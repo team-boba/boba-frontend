@@ -6,6 +6,7 @@ import { HrComponent } from './hr.component';
 import { HireManagementComponent } from './component/hire-management/hire-management.component';
 import { UpdateStatusComponent } from './component/hire-management/update-status/update-status.component';
 import { ProfileSummaryComponent } from './component/profile-summary/profile-summary.component';
+import { VisaStatusManagementComponent } from './component/visa-status-management/visa-status-management.component';
 
 const routes: Routes = [
   {
@@ -22,6 +23,10 @@ const routes: Routes = [
   { 
     path: 'profile',
     component: ProfileSummaryComponent
+  },
+  { 
+    path: 'visa-management',
+    component: VisaStatusManagementComponent
   },
   { 
     path: '', 
