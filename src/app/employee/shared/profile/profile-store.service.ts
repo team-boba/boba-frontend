@@ -11,7 +11,7 @@ export class ProfileStoreService {
   userId: number;
 
   person$: BehaviorSubject<Person> = new BehaviorSubject(null);
-  
+
   constructor(
     private profileBackendService: ProfileBackendService,
     private router: Router
@@ -28,7 +28,6 @@ export class ProfileStoreService {
           if (personResponse.serviceStatus.success) {
             let person = personResponse.person;
             this.person$.next(person);
-            console.log(this.person$.getValue())
           } else {
             alert("You have not started your onboarding application. UserId: " + this.userId );
             this.router.navigate(['/employee/person-form']);

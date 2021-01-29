@@ -18,7 +18,7 @@ export class Employee {
     public driverLicenseExpirationDate: string;
     public house: House;
     public personalDocuments: [PersonalDocument];
-    public applicationWorkFlow: ApplicationWorkFlow;
+    public applicationWorkflow: ApplicationWorkFlow;
     public facilityReports: [FacilityReport];
     public facilityReportDetails: [FacilityReportDetail];
 }

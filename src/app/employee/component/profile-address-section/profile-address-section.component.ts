@@ -1,4 +1,5 @@
 import { Component, Input, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-profile-address-section',
@@ -12,9 +13,14 @@ export class ProfileAddressSectionComponent implements OnInit {
   @Input() zipcode: string;
   @Input() fullState: string;
 
-  constructor() { }
+  constructor(
+    private router: Router
+  ) { }
 
   ngOnInit(): void {
   }
 
+  navigateAddressForm() {
+    this.router.navigate(['/employee/address-form'])
+  }
 }
