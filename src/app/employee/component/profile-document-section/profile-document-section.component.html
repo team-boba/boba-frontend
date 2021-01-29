@@ -1,0 +1,20 @@
+<div class="card">
+    <div class="card-header">
+        Profile Document Section
+    </div>
+    <div class="card-body">
+        <div *ngFor="let document of personalDocuments">
+            <app-s3-doc-downloader 
+                *ngIf="document.path"
+                [title]="document.title" 
+                [description]="document.comment" 
+                [s3FileName]="document.path.substring(document.path.lastIndexOf('/')+1)"
+                [s3FileUrl]="document.path"
+            >
+            </app-s3-doc-downloader>
+        </div>
+    </div>
+    <div class="card-footer">
+        <button type="button" class="card-link btn btn-outline-success">Edit</button>
+    </div>
+</div>

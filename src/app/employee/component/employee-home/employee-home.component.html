@@ -1,13 +1,55 @@
 <div *ngIf="person$ | async as person">
-    <h1>
-        {{person.firstName}}
-    </h1>
     
-    <h1>
-        {{person.lastName}}
-    </h1>
-
-    <h1>
-        {{person.employee.title}}
-    </h1>
+    <div class="row" >
+        <div class="col-4 my-3">
+            <app-profile-name-section
+                [avatar]="person.employee.avatar"
+                [fullName]="person.firstName + ' ' + person.middleName + ' ' + person.lastName"
+                [gender]="person.gender"
+                [ssnFourDigits]="person.ssn.substring(0, 5)"
+                [dob]="person.dob"
+            >
+            </app-profile-name-section>
+        </div>
+       
+        <div class="col-4 my-3">
+            <app-profile-address-section
+                [addressLineOne]="person.address.addressLineOne"
+                [addressLineTwo]="person.address.addressLineTwo"
+                [city]="person.address.city"
+                [zipcode]="person.address.zipcode"
+                [fullState]="person.address.stateName + '(' + person.address.stateAbbr + ')'"
+            >
+            </app-profile-address-section>
+        </div>
+    
+        <div class="col-4 my-3">
+            <app-profile-contactinfo-section
+                [referenceTitle]="person.contacts[0].title"
+                [referenceRelationship]="person.contacts[0].relationship"
+                [emergencyTitle]="person.contacts[1].title"
+                [emergencyRelationship]="person.contacts[1].relationship"
+            >
+            </app-profile-contactinfo-section>
+        </div>
+    
+        <div class="col-4 my-3">
+            <app-profile-employment-section
+                [employeeTitle]="person.employee.title"
+                [visaType]="person.employee.visaStatus.visaType"
+                [visaStartDate]="person.employee.visaStartDate"
+                [visaEndDate]="person.employee.visaEndDate"
+                [employmentStartDate]="person.employee.startDate"
+                [employmentEndDate]="person.employee.endDate"
+            >
+            </app-profile-employment-section>
+        </div>
+    
+        <div class="col-4 my-3">
+            <app-profile-document-section
+                [personalDocuments]="person.employee.personalDocuments"
+            >
+            </app-profile-document-section>
+        </div>
+    </div>
 </div>
