@@ -1,7 +1,7 @@
+import { HouseManagementRequest } from './../../domain/houseManagementRequest.model';
 import { HouseStoreService } from './../../house-store/house-store.service';
 import { Component, OnInit } from '@angular/core';
 import { Observable } from 'rxjs';
-import { HouseInfo } from '../../domain/houseInfo.model';
 import { ActivatedRoute } from '@angular/router';
 
 @Component({
@@ -10,7 +10,7 @@ import { ActivatedRoute } from '@angular/router';
   styleUrls: ['./house-management.component.css']
 })
 export class HouseManagementComponent implements OnInit {
-  houseInfos$: Observable<HouseInfo[]>;
+  houseManagementRequests$: Observable<HouseManagementRequest[]>;
 //   houseInfos$: Array<{address: string, landlord: string, phone: string, numberOfPerson: number}> = [
 //     {address: 'caf', landlord: 'fsv', phone: '123r53', numberOfPerson: 2},
 //     {address: 'caf', landlord: 'fsv', phone: '123r53', numberOfPerson: 2},
@@ -22,7 +22,7 @@ export class HouseManagementComponent implements OnInit {
     private houseStoreService: HouseStoreService) { }
 
   ngOnInit(): void {
-    this.houseInfos$ = this.houseStoreService.getHouseInfos();
+    this.houseManagementRequests$ = this.houseStoreService.getHouseInfos();
   }
 
 }

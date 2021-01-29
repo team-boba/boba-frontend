@@ -1,4 +1,4 @@
-import { HouseInfo } from './../../../domain/houseInfo.model';
+import { HouseManagementRequest } from './../../../domain/houseManagementRequest.model';
 import { Component, OnInit } from '@angular/core';
 import { Observable } from 'rxjs';
 
@@ -8,7 +8,7 @@ import { Observable } from 'rxjs';
   styleUrls: ['./house-info.component.css']
 })
 export class HouseInfoComponent implements OnInit {
-  houseInfo: Observable<HouseInfo>;
+  HouseManagementRequest: Observable<HouseManagementRequest>;
 
   constructor() { }
 

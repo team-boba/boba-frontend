@@ -4,15 +4,17 @@ import { Routes, RouterModule } from '@angular/router';
 
 import { HrComponent } from './hr.component';
 
+
 const routes: Routes = [
+  {
+    path: 'houseManagement',
+    component: HouseManagementComponent
+  },
   { 
     path: '', 
     component: HrComponent
-  },
-  {
-    path: '/houseManagement',
-    component: HouseManagementComponent
   }
+  
 ];
 
 @NgModule({

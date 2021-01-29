@@ -4,13 +4,15 @@
         <th scope="col">Address</th>
         <th scope="col">Landlord</th>
         <th scope="col">Phone</th>
+        <th scope="col">Email</th>
         <th scope="col">Number of Employees</th>
     </tr>
     <tbody>
-        <tr *ngFor="let houseInfo of houseInfos$ | async; let pos=index;">
+        <tr *ngFor="let houseManagementRequest of houseManagementRequests$ | async; let pos=index;">
             <th scope="row">{{pos+1}}</th>
-            <td>{{houseInfo.address}}</td>
+            <td>{{houseManagementRequest.address}}</td>
             <td>landlord</td>
-            <td>{{houseInfo.phone}}</td>
-            <td>{{houseInfo.numberOfPerson}}</td>
+            <td>{{houseManagementRequest.phone}}</td>
+            <td>{{houseManagementRequest.email}}</td>
+            <td>{{houseManagementRequest.numberOfPerson}}</td>
         </tr>

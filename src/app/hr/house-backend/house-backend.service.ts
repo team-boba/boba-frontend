@@ -1,7 +1,9 @@
-import { HttpClient, HttpHeaders } from '@angular/common/http';
+import { HouseManagementResponse } from './../domain/houseManagementResponse.model';
+
+import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
-import { HouseInfo } from './../domain/houseInfo.model';
+import { HouseManagementRequest } from '../domain/houseManagementRequest.model';
 
 
 @Injectable({
@@ -9,13 +11,15 @@ import { HouseInfo } from './../domain/houseInfo.model';
 })
 export class HouseBackendService{
     private houseManagementUrl = '/hr/houseManagement';
+    HouseManagementResponse: any;
     constructor(private http: HttpClient){}
 
-    public getAllHouses(): Observable<HouseInfo[]>{
+    public getAllHouseManagementResponses(): Observable<HouseManagementResponse>{
         const url = '/api' + this.houseManagementUrl;
-        return this.http.get<HouseInfo[]>(url);
+        return this.http.get<HouseManagementResponse>(url);
     }
 
+    
 
     // public submitHouseInfo(houseInfo: HouseInfo){
     //     const utl = '/api'
