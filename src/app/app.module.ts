@@ -13,6 +13,7 @@ import { TooltipModule } from 'ngx-bootstrap/tooltip';
 import { ErrorPageComponent } from './component/error-page/error-page.component';
 import { CommonModule } from '@angular/common';
 import { SharedcomponentsModule } from './sharedcomponents/sharedcomponents.module';
+import { MatTableModule } from '@angular/material/table';
 
 @NgModule({
   declarations: [
@@ -30,7 +31,8 @@ import { SharedcomponentsModule } from './sharedcomponents/sharedcomponents.modu
     ModalModule.forRoot(),
     CollapseModule.forRoot(),
     TooltipModule.forRoot(),
-    SharedcomponentsModule
+    SharedcomponentsModule,
+    MatTableModule
   ],
   providers: [],
   bootstrap: [AppComponent],

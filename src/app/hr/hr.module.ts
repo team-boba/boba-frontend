@@ -13,6 +13,8 @@ import { GenerateTokenComponent } from './component/generate-token/generate-toke
 import { ProfileSummaryComponent } from './component/profile-summary/profile-summary.component';
 import { SharedcomponentsModule } from '../sharedcomponents/sharedcomponents.module';
 import { VisaStatusManagementComponent } from './component/visa-status-management/visa-status-management.component';
+import { MatTableModule } from '@angular/material/table';
+import { MatToolbarModule} from '@angular/material/toolbar';
 
 @NgModule({
   declarations: [
@@ -32,7 +34,9 @@ import { VisaStatusManagementComponent } from './component/visa-status-managemen
     FormsModule,
     ReactiveFormsModule,
     DataTablesModule,
-    SharedcomponentsModule
+    SharedcomponentsModule,
+    MatTableModule,
+    MatToolbarModule
   ],
   schemas: [
     CUSTOM_ELEMENTS_SCHEMA
