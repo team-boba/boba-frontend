@@ -1,3 +1,4 @@
+import { Router } from '@angular/router';
 import { Component, Input, OnInit } from '@angular/core';
 
 @Component({
@@ -6,15 +7,21 @@ import { Component, Input, OnInit } from '@angular/core';
   styleUrls: ['./profile-name-section.component.css']
 })
 export class ProfileNameSectionComponent implements OnInit {
-  @Input() avatar: string;
   @Input() fullName: string;
+  @Input() email: string;
+  @Input() cellphone: string;
   @Input() gender: string;
   @Input() ssnFourDigits: string;
   @Input() dob: string;  
 
-  constructor() { }
+  constructor(
+    private router: Router 
+  ) { }
 
   ngOnInit(): void {
   }
 
+  navigatePersonForm() {
+    this.router.navigate(['/employee/person-form'])
+  }
 }

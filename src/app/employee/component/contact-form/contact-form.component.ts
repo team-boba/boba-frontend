@@ -1,10 +1,12 @@
+import { ProfileBackendService } from './../../shared/profile/profile-backend.service';
 import { FormValidationService } from './../../../shared/form-validation/form-validation.service';
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, Validators, FormControl, FormArray } from '@angular/forms';
 import { FormGroup } from '@angular/forms';
-import { OnboardingRequest } from './../../domain/OnboardingRequest.model';
 import { OnboardingStoreService } from './../../shared/onboarding/onboarding-store.service';
 import { Router } from '@angular/router';
+import { Location } from '@angular/common';
+import { ProfileStoreService } from '../../shared/profile/profile-store.service';
 
 @Component({
   selector: 'app-contact-form',
@@ -12,8 +14,9 @@ import { Router } from '@angular/router';
   styleUrls: ['./contact-form.component.css']
 })
 export class ContactFormComponent implements OnInit {
+  returnUserId: number = null;
 
-    contactForm = this.fb.group({
+  contactForm = this.fb.group({
     reference : this.fb.group({
       title: ['', [Validators.required]],
       relationship: ['', [Validators.required]]
@@ -28,9 +31,24 @@ export class ContactFormComponent implements OnInit {
     private fb: FormBuilder,
     private formValidationService: FormValidationService,
     private onboardingStoreService: OnboardingStoreService,
-    private router: Router) { }
+    private router: Router,
+    private location: Location,
+    private profileStoreService: ProfileStoreService,
+    private profileBackendService: ProfileBackendService
+  ) { }
 
   ngOnInit(): void {
+    let person = this.profileStoreService.person$.getValue();
+    if (person != null) { 
+      this.returnUserId = person.userId;
+      let referenceContact = person.contacts.find(c=>c.reference);
+      let emergencyContact = person.contacts.find(c=>c.emergency);
+
+      this.contactForm.patchValue({
+        reference: referenceContact,
+        emergency: emergencyContact
+      });
+    }
   }
 
   get contactFormControls() {
@@ -45,11 +63,25 @@ export class ContactFormComponent implements OnInit {
     return (this.contactForm.get('emergency') as FormGroup).controls;
   }
 
-  onSubmit() {
-    console.log(this.contactForm.value);
-    this.onboardingStoreService.setContactOfCurrentOnboardingRequest(this.contactForm.value);
+  back() {
+    this.location.back();
+  }
 
-    this.router.navigate(['/employee/personal-document-form']);
+  async onSubmit() {
+    console.log(this.contactForm.value);
+    
+    let contactFormValue = this.contactForm.value;
+    if (this.returnUserId) {
+      let person = this.profileStoreService.person$.getValue();
+      person.contacts = [contactFormValue.reference, contactFormValue.emergency];
+
+      await this.profileBackendService.updateContactRequest(this.returnUserId, contactFormValue);
+      this.location.back();
+    } else {
+      this.onboardingStoreService.setContactOfCurrentOnboardingRequest(contactFormValue);
+      this.router.navigate(['/employee/personal-document-form']);
+    }
+    
   }
 
 }

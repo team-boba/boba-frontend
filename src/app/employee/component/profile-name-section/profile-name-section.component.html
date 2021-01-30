@@ -2,16 +2,17 @@
     <div class="card-header">
         Profile Name Section
     </div>
-    <img class="card-img-top" src={{avatar}} alt="employee avatar" height="300em">
     <div class="card-body">
         <ul class="list-group list-group-flush">
             <li class="list-group-item">Name: {{fullName}}</li>
+            <li class="list-group-item">Email: {{email}}</li>
+            <li class="list-group-item">Cellphone: {{cellphone}}</li>
             <li class="list-group-item">Gender: {{gender}}</li>
             <li class="list-group-item">SSN: {{ssnFourDigits}}</li>
             <li class="list-group-item">Birth Date: {{dob}}</li>
         </ul>
     </div>
     <div class="card-footer">
-        <button type="button" class="card-link btn btn-outline-success">Edit</button>
+        <button type="button" class="card-link btn btn-outline-success" (click)="navigatePersonForm()">Edit</button>
     </div>
 </div>

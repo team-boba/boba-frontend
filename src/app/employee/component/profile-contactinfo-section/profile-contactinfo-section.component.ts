@@ -1,4 +1,5 @@
 import { Component, Input, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-profile-contactinfo-section',
@@ -11,9 +12,14 @@ export class ProfileContactinfoSectionComponent implements OnInit {
   @Input() emergencyTitle: string;
   @Input() emergencyRelationship: string;
 
-  constructor() { }
+  constructor(
+    private router: Router
+  ) { }
 
   ngOnInit(): void {
   }
 
+  navigateContactForm() {
+    this.router.navigate(['/employee/contact-form'])
+  }
 }

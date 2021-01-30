@@ -4,6 +4,9 @@ import { OnboardingBackendService } from './../../shared/onboarding/onboarding-b
 import { OnboardingStoreService } from './../../shared/onboarding/onboarding-store.service';
 import { Router } from '@angular/router';
 import { PersonalDocumentRequest } from './../../domain/PersonalDocumentRequest.model'
+import { Location } from '@angular/common';
+import { ProfileStoreService } from '../../shared/profile/profile-store.service';
+import { ProfileBackendService } from '../../shared/profile/profile-backend.service';
 
 @Component({
   selector: 'app-personal-document-form',
@@ -13,6 +16,10 @@ import { PersonalDocumentRequest } from './../../domain/PersonalDocumentRequest.
 export class PersonalDocumentFormComponent implements OnInit {
   DocLabel1: string = "Please upload a copy of your work authorization";
   DocLabel2: string = "Please upload a copy of your drive license";
+
+  returnDocUrl1: string = null;
+  returnDocUrl2: string = null;
+  returnUserId: number = null;
 
   personDocumentRequest1: PersonalDocumentRequest = {
     title: 'work authorization',
@@ -27,9 +34,22 @@ export class PersonalDocumentFormComponent implements OnInit {
   constructor(
     private onboardingBackendService: OnboardingBackendService,
     private onboardingStoreService: OnboardingStoreService,
-    private router: Router) { }
+    private router: Router,
+    private location: Location,
+    private profileStoreService: ProfileStoreService,
+    private profileBackendService: ProfileBackendService
+  ) { }
 
   ngOnInit(): void {
+    let person = this.profileStoreService.person$.getValue();
+    if (person != null) { 
+      this.returnUserId = person.userId;
+      this.returnDocUrl1 = person.employee.personalDocuments.find(pd=>pd.title==='work authorization').path;
+      this.returnDocUrl2 = person.employee.personalDocuments.find(pd=>pd.title==='drive license').path;
+
+      this.personDocumentRequest1.path = this.returnDocUrl1;
+      this.personDocumentRequest2.path = this.returnDocUrl2;
+    }
   }
 
   onGetDocPath1(url) {
@@ -40,16 +60,31 @@ export class PersonalDocumentFormComponent implements OnInit {
     this.personDocumentRequest2.path = url;
   }
 
+  back() {
+    this.location.back();
+  }
+
   async onSubmit() {
-    this.onboardingStoreService.setPersonalDocumentOfCurrentOnboardingRequest([this.personDocumentRequest1, this.personDocumentRequest2]);
-    let onboardingRequest: OnboardingRequest = this.onboardingStoreService.getCurrentOnboardingRequest();
-    let onboardingSubmittedResponse = await this.onboardingBackendService.submitOnboardingRequest(onboardingRequest);
-    if (onboardingSubmittedResponse.serviceStatus.success) {
-      alert("Onboarding application successfully submitted!");
-      window.location.href = '/employee/'+onboardingSubmittedResponse.userId;
+    if (this.returnUserId) {
+      let person = this.profileStoreService.person$.getValue();
+
+      person.employee.personalDocuments.find(pd=>pd.title==='work authorization').path = this.personDocumentRequest1.path;
+      person.employee.personalDocuments.find(pd=>pd.title==='drive license').path = this.personDocumentRequest2.path;
+      await this.profileBackendService.updatePersonalDocumentsRequest(this.returnUserId
+        ,{'personalDocumentRequests': [this.personDocumentRequest1, this.personDocumentRequest2]});
+
+      this.location.back();
     } else {
-      alert("Onboarding application failed, start new application.");
-      this.router.navigate(['/employee/person-form']);
+      this.onboardingStoreService.setPersonalDocumentOfCurrentOnboardingRequest([this.personDocumentRequest1, this.personDocumentRequest2]);
+      let onboardingRequest: OnboardingRequest = this.onboardingStoreService.getCurrentOnboardingRequest();
+      let onboardingSubmittedResponse = await this.onboardingBackendService.submitOnboardingRequest(onboardingRequest);
+      if (onboardingSubmittedResponse.serviceStatus.success) {
+        alert("Onboarding application successfully submitted!");
+        window.location.href = '/employee/'+onboardingSubmittedResponse.userId;
+      } else {
+        alert("Onboarding application failed, start new application.");
+        this.router.navigate(['/employee/person-form']);
+      }
     }
   }
 }

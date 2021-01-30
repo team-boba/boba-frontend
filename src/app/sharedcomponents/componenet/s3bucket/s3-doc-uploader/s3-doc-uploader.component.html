@@ -1,10 +1,10 @@
 <div class="form-group">
     <label>{{label}}</label>
     <input type="file" accept=".pdf"
-        [disabled]="docS3Url"
         (change)="handleFileInput($event.target.files)" class="form-control-file">
     <span class="btn btn-outline-success my-2" (click)="uploadFile()">Upload document</span>
     <br>
+    <h5 style="font-style: oblique; color: blue" *ngIf="docS3Url">Uploaded: {{docS3Url.substring(docS3Url.lastIndexOf('/')+1)}}</h5>
     <a class="btn btn-outline-info" *ngIf="docS3Url" target="_blank" href={{docS3Url}}>Preview document</a>
     <hr>
 </div>

@@ -2,6 +2,7 @@
     <div class="card-header">
         Profile Employment Section
     </div>
+    <img class="card-img-top" src={{avatar}} alt="employee avatar" height="300em">
     <div class="card-body">
         <ul class="list-group list-group-flush">
             <li class="list-group-item">Title: {{employeeTitle}}</li>
@@ -13,6 +14,6 @@
         </ul>
     </div>
     <div class="card-footer">
-        <button type="button" class="card-link btn btn-outline-success">Edit</button>
+        <button type="button" class="card-link btn btn-outline-success" (click)="navigateEmployeeForm()">Edit</button>
     </div>
 </div>
