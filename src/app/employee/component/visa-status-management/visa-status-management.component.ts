@@ -1,3 +1,4 @@
+import { ConfirmDialogService } from './../../../confirmation-dialog/shared/confirm-dialog/confirm-dialog.service';
 import { VisaStatusManagementStoreService } from './../../shared/visa-status-management/visa-status-management-store.service';
 import { faFilePdf } from '@fortawesome/free-solid-svg-icons';
 import { UploadDocumentRequest } from './../../domain/UploadDocumentRequest.model';
@@ -31,15 +32,19 @@ export class VisaStatusManagementComponent implements OnInit {
 
   uploadResponseStatus$: Observable<ServiceStatus>;
   person$: Observable<Person>;
-
+  isUptodb: boolean = false;
+  visaStatus: String = null;
   constructor(
     private route: ActivatedRoute,
     private visaStatusManagementStoreService : VisaStatusManagementStoreService,
+    private confirmDialogService : ConfirmDialogService,
     private profileStoreService: ProfileStoreService,
     private router: Router
   ){}
 
-  ngOnInit() {
+  ngOnInit(){
+    
+    
     this.route.params.subscribe(()=>{
       this.person$ = this.profileStoreService.getPerson();
     });
@@ -52,7 +57,6 @@ export class VisaStatusManagementComponent implements OnInit {
     var nowDate = new Date();
     var diff = visaEndDate.getTime() - nowDate.getTime();
     diff = diff/(1000 * 3600 * 24);
-    console.log(diff)
     if(diff < 100){
       alert("Your EAD expire within 100 days. Please contact with our HR First");
       return false;
@@ -90,14 +94,21 @@ export class VisaStatusManagementComponent implements OnInit {
     }
   }
 
-  onclickHome(personID){
-    const homeURL = '/employee/' + personID
-    this.router.navigate([homeURL]);
-  }
-
   getFileName(fileUrl: String){
     return fileUrl.substring(fileUrl.lastIndexOf('/') + 1);
   }
+
+  onclickHome(personID){
+    const homeURL = '/employee/' + personID;
+    this.router.navigate([homeURL]);
+    if(this.isUptodb){
+      this.confirmDialogService.confirmThis("Discard Upload?", ()=>{
+        alert("Did not send upload document to HR");
+        this.router.navigate([homeURL]);
+      },function(){})
+    }
+  }
+
 
 }
 
