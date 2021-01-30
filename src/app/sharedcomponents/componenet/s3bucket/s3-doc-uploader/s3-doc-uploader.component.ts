@@ -9,7 +9,7 @@ import { Component, OnInit, EventEmitter, Input, Output } from '@angular/core';
 export class S3DocUploaderComponent implements OnInit {
 
   docFormData: FormData;
-  docS3Url: string;
+  @Input() docS3Url: string;
   @Input() label: string;
   @Output() docUploadedToS3Event = new EventEmitter();
 
@@ -29,7 +29,7 @@ export class S3DocUploaderComponent implements OnInit {
   }
 
   async uploadFile() {
-    if (!this.docFormData || this.docS3Url) {
+    if (!this.docFormData) {
       alert("Not available.");
       return;
     }

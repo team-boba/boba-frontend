@@ -8,7 +8,7 @@ import { Component, Input, OnInit, Output, EventEmitter } from '@angular/core';
 })
 export class S3ImageUploaderComponent implements OnInit {
   imageFormData: FormData;
-  imageS3Url: string;
+  @Input() imageS3Url: string;
   @Input() label: string;
   @Output() imageUploadedToS3Event = new EventEmitter();
 
@@ -28,7 +28,7 @@ export class S3ImageUploaderComponent implements OnInit {
   }
 
   async uploadFile() {
-    if (!this.imageFormData || this.imageS3Url) {
+    if (!this.imageFormData) {
       alert("Not available.");
       return;
     }
