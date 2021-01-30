@@ -2,7 +2,6 @@
     <div>
         <label>{{label}}</label>
         <input type="file" accept="image/x-png,image/gif,image/jpeg"
-            [disabled]="imageS3Url"
             (change)="handleFileInput($event.target.files)" class="form-control-file">
         <span class="btn btn-outline-success my-2" (click)="uploadFile()">Upload image</span>
     </div>

@@ -31,12 +31,13 @@ export class VisaStatusManagementComponent implements OnInit {
 
   uploadResponseStatus$: Observable<ServiceStatus>;
   person$: Observable<Person>;
+
   constructor(
-              private route: ActivatedRoute,
-              private visaStatusManagementStoreService : VisaStatusManagementStoreService,
-              private profileStoreService: ProfileStoreService,
-              private router: Router
-              ){}
+    private route: ActivatedRoute,
+    private visaStatusManagementStoreService : VisaStatusManagementStoreService,
+    private profileStoreService: ProfileStoreService,
+    private router: Router
+  ){}
 
   ngOnInit() {
     this.route.params.subscribe(()=>{
@@ -78,7 +79,6 @@ export class VisaStatusManagementComponent implements OnInit {
   }
 
   onclickSave(employeeFirstname, employeeID){
-    
     if(this.uploadDocumentRequest.path !== ''){
       this.uploadDocumentRequest.employeeID = employeeID;
       this.uploadDocumentRequest.createBy = employeeFirstname;

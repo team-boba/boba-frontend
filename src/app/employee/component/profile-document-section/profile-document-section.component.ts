@@ -1,4 +1,5 @@
 import { Component, Input, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-profile-document-section',
@@ -8,9 +9,14 @@ import { Component, Input, OnInit } from '@angular/core';
 export class ProfileDocumentSectionComponent implements OnInit {
   @Input() personalDocuments;
 
-  constructor() { }
+  constructor(
+    private router: Router
+  ) { }
 
   ngOnInit(): void {
   }
 
+  navigatePersonalDocumentForm() {
+    this.router.navigate(['/employee/personal-document-form'])
+  }
 }

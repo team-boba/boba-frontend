@@ -12,7 +12,7 @@ export class Person {
     public alternatePhone: string;
     public gender: string;
     public userId: number;
-    public contacts: [Contact];
+    public contacts: Contact[];
     public address: Address;
     public employee: Employee;
     public ssn: string;

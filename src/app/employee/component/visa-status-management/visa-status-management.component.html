@@ -1,7 +1,5 @@
 
 <div *ngIf="person$ | async as person">
-    <h3>Hello!  {{person.firstName}}</h3>
-
     <button class="btn btn-light" (click)="onclickHome(person.id)">Home</button>
 
     <div *ngIf="findDocumentByOrder(person.employee.personalDocuments) === 'NoFind'">

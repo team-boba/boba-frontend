@@ -1,3 +1,7 @@
+import { VisaStatus } from './../../domain/profile/VisaStatus.model';
+import { ProfileBackendService } from './../../shared/profile/profile-backend.service';
+import { ProfileStoreService } from './../../shared/profile/profile-store.service';
+import { Location } from '@angular/common';
 import { OnboardingRequest } from './../../domain/OnboardingRequest.model';
 import { OnboardingBackendService } from './../../shared/onboarding/onboarding-backend.service';
 import { OnboardingStoreService } from './../../shared/onboarding/onboarding-store.service';
@@ -16,24 +20,13 @@ import { Router } from '@angular/router';
 })
 export class EmployeeFormComponent implements OnInit {
   visaTypes = ['Green Card','Citizen','H1-B', 'L2', 'F1(CPT/OPT)','H4'];
-  personNames = ['henry', 'angelina', 'boba'];
 
   avatarLabel: string = "Avatar";
-
-  constructor(
-    private fb: FormBuilder,
-    private formValidationService: FormValidationService,
-    private onboardingBackendService: OnboardingBackendService,
-    private onboardingStoreService: OnboardingStoreService,
-    private router: Router
-  ) { }
-
-  ngOnInit(): void {
-  }
+  returnAvatarImageUrl: string = null;
+  returnUserId: number = null;
 
   employeeForm = this.fb.group({
     title: ['', [Validators.required]],
-    manager: [''],
     startDate: ['', [Validators.required]],
     endDate: ['', ],
     avatar: [''],
@@ -47,6 +40,38 @@ export class EmployeeFormComponent implements OnInit {
     driverLicenseExpirationDate: ['', [this.formValidationService.dateAfterValidator(null)]]
   });
 
+  constructor(
+    private fb: FormBuilder,
+    private formValidationService: FormValidationService,
+    private onboardingStoreService: OnboardingStoreService,
+    private router: Router,
+    private location: Location,
+    private profileStoreService: ProfileStoreService,
+    private profileBackendService: ProfileBackendService
+  ) { }
+
+  ngOnInit(): void {
+    let person = this.profileStoreService.person$.getValue();
+    this.returnAvatarImageUrl = person.employee.avatar;
+    if (person != null) { 
+      this.returnUserId = person.userId;
+      this.employeeForm.patchValue({
+        title: person.employee.title,
+        startDate: person.employee.startDate,
+        endDate: person.employee.endDate,
+        avatar: person.employee.avatar,
+        car: person.employee.car,
+        visaStatus: {
+          visaType: person.employee.visaStatus.visaType,
+          visaStartDate: person.employee.visaStartDate,
+          visaEndDate: person.employee.visaEndDate
+        },
+        driverLicense: person.employee.driverLicense,
+        driverLicenseExpirationDate: person.employee.driverLicenseExpirationDate
+      });
+    }
+  }
+
   get employeeFormControls() {
     return this.employeeForm.controls;
   }
@@ -55,11 +80,33 @@ export class EmployeeFormComponent implements OnInit {
     return (this.employeeForm.get('visaStatus') as FormGroup).controls;
   }
 
-  onSubmit() {
+  async onSubmit() {
     console.log(this.employeeForm.value);
 
-    this.onboardingStoreService.setEmployeeOfCurrentOnboardingRequest(this.employeeForm.value);
-    this.router.navigate(['/employee/contact-form']);
+    let employeeFormValue = this.employeeForm.value;
+    if (this.returnUserId) {
+      let person = this.profileStoreService.person$.getValue();
+      person.employee.title = employeeFormValue.title;
+      person.employee.startDate = employeeFormValue.startDate;
+      person.employee.endDate = employeeFormValue.endDate;
+      person.employee.avatar = employeeFormValue.avatar;
+      person.employee.car = employeeFormValue.car;
+      person.employee.visaStatus.visaType = employeeFormValue.visaStatus.visaType;
+      person.employee.visaStartDate = employeeFormValue.visaStatus.visaStartDate;
+      person.employee.visaEndDate = employeeFormValue.visaStatus.visaEndDate;
+      person.employee.driverLicense = employeeFormValue.driverLicense;
+      person.employee.driverLicenseExpirationDate = employeeFormValue.driverLicenseExpirationDate;
+
+      await this.profileBackendService.updateEmployeeRequest(this.returnUserId, employeeFormValue);
+      this.location.back();
+    } else {
+      this.onboardingStoreService.setEmployeeOfCurrentOnboardingRequest(employeeFormValue);
+      this.router.navigate(['/employee/contact-form']);
+    }
+  }
+
+  back() {
+    this.location.back();
   }
 
   onAvatarImageUploadedToS3Event(url) {
