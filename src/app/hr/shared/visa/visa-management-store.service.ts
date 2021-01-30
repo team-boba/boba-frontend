@@ -22,7 +22,7 @@ export class VisaManagementStoreService {
     this.visaManagementBackendService.getAllVisaInfo()
       .subscribe(
           (data) => {
-            console.log(data);
+            // console.log(data);
             if (data.serviceStatus.success) {
               let visaManagementRequests = data.visaManagementRequests.map(visaManagementRequest => {
                 return new VisaManagementRequest(
@@ -32,9 +32,11 @@ export class VisaManagementStoreService {
                   visaManagementRequest.middleName,
                   visaManagementRequest.email,
                   visaManagementRequest.employeeId,
-                  visaManagementRequest.optStatus,
+                  visaManagementRequest.nextStep,
+                  visaManagementRequest.action,
                   visaManagementRequest.visaStartDate,
                   visaManagementRequest.visaEndDate,
+                  visaManagementRequest.dayLeft,
                   visaManagementRequest.personalDocuments
                 );
               });
