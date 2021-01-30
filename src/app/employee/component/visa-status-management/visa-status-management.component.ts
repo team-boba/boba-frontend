@@ -1,17 +1,13 @@
 import { VisaStatusManagementStoreService } from './../../shared/visa-status-management/visa-status-management-store.service';
-import { UploadDocumentResponse } from './../../domain/UploadDocumentResponse.model';
+import { faFilePdf } from '@fortawesome/free-solid-svg-icons';
 import { UploadDocumentRequest } from './../../domain/UploadDocumentRequest.model';
 import { Employee } from './../../domain/profile/Employee.model';
 import { Observable } from 'rxjs';
 import { ProfileStoreService } from './../../shared/profile/profile-store.service';
-import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 
-
-import { ConfirmDialogService } from './../../../confirmation-dialog/shared/confirm-dialog/confirm-dialog.service';
 import { ActivatedRoute, Params, Router } from '@angular/router';
 import { Component, OnInit } from '@angular/core';
 import { Person } from '../../domain/profile/Person.model';
-import { VisaStatusManagementBackendService } from '../../shared/visa-status-management/visa-status-management-backend.service';
 import { ServiceStatus } from 'src/app/domain/ServiceStatus.model';
 
 @Component({
@@ -21,6 +17,10 @@ import { ServiceStatus } from 'src/app/domain/ServiceStatus.model';
 })
 export class VisaStatusManagementComponent implements OnInit {
   
+ 
+  faFileWord = faFilePdf;
+  DocumentsOrder=['OPT STEM EAD','OPT STEM Receipt', 'I-20', 'Signed I-983', 'I-983', 'OPT EAD', 'OPT Receipt'];
+
   uploadDocumentRequest : UploadDocumentRequest = {
     employeeID : 0,
     path : '',
@@ -28,10 +28,7 @@ export class VisaStatusManagementComponent implements OnInit {
     comment : '',
     createBy : ''
   };
- 
-  DocumentsOrder=['opt-stem-receipt', 'new-i-20', 'signed-i-983', 'i-983', 'opt-ead', 'opt-receipt'];
 
-  
   uploadResponseStatus$: Observable<ServiceStatus>;
   person$: Observable<Person>;
   constructor(
@@ -49,6 +46,19 @@ export class VisaStatusManagementComponent implements OnInit {
     
   }
 
+  validEADDate(visaEndDateStr){
+    var visaEndDate = new Date(visaEndDateStr);
+    var nowDate = new Date();
+    var diff = visaEndDate.getTime() - nowDate.getTime();
+    diff = diff/(1000 * 3600 * 24);
+    console.log(diff)
+    if(diff < 100){
+      alert("Your EAD expire within 100 days. Please contact with our HR First");
+      return false;
+    }
+    return true; 
+  }
+
   findDocumentByOrder(documents){
     var n = this.DocumentsOrder.length
     for(let j = 0; j < n; j++){
@@ -59,8 +69,8 @@ export class VisaStatusManagementComponent implements OnInit {
             }
         } 
     }
-    this.uploadDocumentRequest.title = 'opt-receipt';
-    return "noFind"
+    this.uploadDocumentRequest.title = 'OPT Receipt';
+    return "NoFind"
   }
 
   onloadingFile(url){
@@ -68,7 +78,7 @@ export class VisaStatusManagementComponent implements OnInit {
   }
 
   onclickSave(employeeFirstname, employeeID){
-    console.log(this.uploadDocumentRequest.path);
+    
     if(this.uploadDocumentRequest.path !== ''){
       this.uploadDocumentRequest.employeeID = employeeID;
       this.uploadDocumentRequest.createBy = employeeFirstname;
@@ -83,6 +93,10 @@ export class VisaStatusManagementComponent implements OnInit {
   onclickHome(personID){
     const homeURL = '/employee/' + personID
     this.router.navigate([homeURL]);
+  }
+
+  getFileName(fileUrl: String){
+    return fileUrl.substring(fileUrl.lastIndexOf('/') + 1);
   }
 
 }

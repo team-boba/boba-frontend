@@ -21,11 +21,11 @@ export class VisaStatusManagementStoreService {
 
   postloadDocumentRecord(uploadDocumentRequest){
       this.vsmBackendService.getUploadDocumentResponse(uploadDocumentRequest).subscribe((response)=>{
-        console.log(response.serviceStatus.success);
+      
         if(response.serviceStatus.success){
           let status = response.serviceStatus;
           this.uploadStatus$.next(status);
-          console.log(this.uploadStatus$.getValue());
+          this.uploadStatus$.getValue()
         }
         else{
           console.log(response.serviceStatus.errorMessage);
