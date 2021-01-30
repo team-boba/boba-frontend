@@ -5,7 +5,7 @@
     <div class="card-body">
         <div *ngFor="let document of personalDocuments">
             <app-s3-doc-downloader
-                *ngIf="(document.title==='work authorization' || document.title==='driver license') && document.path"
+                *ngIf="(document.title==='work authorization' || document.title==='drive license') && document.path"
                 [title]="document.title" 
                 [description]="document.comment" 
                 [s3FileName]="document.path.substring(document.path.lastIndexOf('/')+1)"

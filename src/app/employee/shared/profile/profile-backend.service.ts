@@ -6,6 +6,8 @@ import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 import { PersonResponse } from '../../domain/profile/PersonResponse.model';
+import { PersonalDocumentRequest } from '../../domain/PersonalDocumentRequest.model';
+import { ListPersonalDocumentsRequest } from '../../domain/ListPersonalDocumentsRequest.model';
 
 @Injectable({
   providedIn: 'root'
@@ -38,5 +40,10 @@ export class ProfileBackendService {
   async updateContactRequest(returnUserId: number, contactRequest: ContactRequest) {
     const url = '/api/employee/profile/update-contact/' + returnUserId;
     return await this.http.post(url, contactRequest).toPromise();
+  }
+
+  async updatePersonalDocumentsRequest(returnUserId: number, listPersonalDocumentsRequest: ListPersonalDocumentsRequest) {
+    const url = '/api/employee/profile/update-personal-documents/' + returnUserId;
+    return await this.http.post(url, listPersonalDocumentsRequest).toPromise();
   }
 }

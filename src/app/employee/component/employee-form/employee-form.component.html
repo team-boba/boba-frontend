@@ -40,7 +40,11 @@
             </div>
         </div>
 
-        <app-s3-image-uploader [label]="avatarLabel" (imageUploadedToS3Event)='onAvatarImageUploadedToS3Event($event)' ></app-s3-image-uploader>
+        <app-s3-image-uploader
+            [imageS3Url]="returnAvatarImageUrl" 
+            [label]="avatarLabel" 
+            (imageUploadedToS3Event)='onAvatarImageUploadedToS3Event($event)' 
+        ></app-s3-image-uploader>
     
         <div class="form-group">
             <label>Car</label>

@@ -22,6 +22,7 @@ export class EmployeeFormComponent implements OnInit {
   visaTypes = ['Green Card','Citizen','H1-B', 'L2', 'F1(CPT/OPT)','H4'];
 
   avatarLabel: string = "Avatar";
+  returnAvatarImageUrl: string = null;
   returnUserId: number = null;
 
   employeeForm = this.fb.group({
@@ -51,6 +52,7 @@ export class EmployeeFormComponent implements OnInit {
 
   ngOnInit(): void {
     let person = this.profileStoreService.person$.getValue();
+    this.returnAvatarImageUrl = person.employee.avatar;
     if (person != null) { 
       this.returnUserId = person.userId;
       this.employeeForm.patchValue({
