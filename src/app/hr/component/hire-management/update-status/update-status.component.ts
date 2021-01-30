@@ -59,6 +59,8 @@ export class UpdateStatusComponent implements OnInit {
   }
   
   onUpdate() {
+    console.log(this.applicationWorkflowRequest.userId);
+    console.log(this.applicationWorkflowRequest.email);
     this.applicationWorkflowRequest.comments = this.comments;
     this.applicationWorkflowRequest.status = this.status;
 

@@ -50,12 +50,10 @@ export class VisaStatusManagementComponent {
   }
 
   onloadingFile(url){
-    console.log(url);
     this.visaManagementUploadRequest.path = url;
   }
 
   onSaveUploadedFile(employeeId: number) {
-    console.log(employeeId);
     this.visaManagementUploadRequest.employeeId = employeeId;
     this.visaManagementBackendService.uploadOPTFile(this.visaManagementUploadRequest).subscribe();
   }
