@@ -91,7 +91,11 @@ export class VisaStatusManagementComponent implements OnInit {
     var optdocs = []
     for(let i = 0; i < documents.length; i++){
       if(this.DocumentsOrder.indexOf(documents[i].title) > 0){
-        optdocs.push(document[i]);
+        var doc = {}
+        doc["title"] = documents[i].title;
+        doc["comment"] = documents[i].comment;
+        doc["path"] = documents[i].path;
+        optdocs.push(doc);
       }
     }
     return optdocs;
