@@ -1,3 +1,5 @@
+import { PersonalDocumentRequest } from './../../domain/PersonalDocumentRequest.model';
+import { PersonalDocument } from './../../domain/profile/PersonalDocument.model';
 import { ConfirmDialogService } from './../../../confirmation-dialog/shared/confirm-dialog/confirm-dialog.service';
 import { VisaStatusManagementStoreService } from './../../shared/visa-status-management/visa-status-management-store.service';
 import { faFilePdf } from '@fortawesome/free-solid-svg-icons';
@@ -34,6 +36,8 @@ export class VisaStatusManagementComponent implements OnInit {
   person$: Observable<Person>;
   isUptodb: boolean = false;
   visaStatus: String = null;
+  //---test/
+  personaldocuments = [PersonalDocument];
   constructor(
     private route: ActivatedRoute,
     private visaStatusManagementStoreService : VisaStatusManagementStoreService,
@@ -43,13 +47,18 @@ export class VisaStatusManagementComponent implements OnInit {
   ){}
 
   ngOnInit(){
-    
-    
     this.route.params.subscribe(()=>{
       this.person$ = this.profileStoreService.getPerson();
     });
 
-    
+      let person = this.profileStoreService.person$.value
+     
+      if(person.employee.visaStatus.visaType !== 'F1(CPT/OPT)'){
+        const homeURL = '/employee/' + person.userId;
+        alert("Vise Status is not F1(CPT/OPT)")
+        this.router.navigate([homeURL]);
+      }
+      
   }
 
   validEADDate(visaEndDateStr){
@@ -78,6 +87,16 @@ export class VisaStatusManagementComponent implements OnInit {
     return "NoFind"
   }
 
+  optDocumentFilter(documents){
+    var optdocs = []
+    for(let i = 0; i < documents.length; i++){
+      if(this.DocumentsOrder.indexOf(documents[i].title) > 0){
+        optdocs.push(document[i]);
+      }
+    }
+    return optdocs;
+  }
+
   onloadingFile(url){
     this.uploadDocumentRequest.path = url;
   }
@@ -98,15 +117,9 @@ export class VisaStatusManagementComponent implements OnInit {
     return fileUrl.substring(fileUrl.lastIndexOf('/') + 1);
   }
 
-  onclickHome(personID){
-    const homeURL = '/employee/' + personID;
+  onclickHome(userID){
+    const homeURL = '/employee/' + userID;
     this.router.navigate([homeURL]);
-    if(this.isUptodb){
-      this.confirmDialogService.confirmThis("Discard Upload?", ()=>{
-        alert("Did not send upload document to HR");
-        this.router.navigate([homeURL]);
-      },function(){})
-    }
   }
 
 

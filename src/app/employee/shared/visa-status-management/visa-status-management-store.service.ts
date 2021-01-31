@@ -21,15 +21,12 @@ export class VisaStatusManagementStoreService {
 
   postloadDocumentRecord(uploadDocumentRequest){
       this.vsmBackendService.getUploadDocumentResponse(uploadDocumentRequest).subscribe((response)=>{
-      
         if(response.serviceStatus.success){
           let status = response.serviceStatus;
           this.uploadStatus$.next(status);
           this.uploadStatus$.getValue()
         }
-        else{
-          console.log(response.serviceStatus.errorMessage);
-        }
+        
       },error => console.log("error retrieving upload document to database response"))
   }
 

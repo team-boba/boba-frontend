@@ -3,7 +3,7 @@
 
     <div *ngIf="findDocumentByOrder(person.employee.personalDocuments) === 'NoFind'" >
       <app-s3-doc-uploader 
-        label="Next step: Please upload a copy of your OPT Receipt" 
+        label="Next Step: Please upload a copy of your OPT Receipt" 
         (docUploadedToS3Event)='onloadingFile($event)'
         ></app-s3-doc-uploader>
     </div>
@@ -11,7 +11,7 @@
     <div>
       <div *ngIf="findDocumentByOrder(person.employee.personalDocuments) === 'OPT Receipt'">
       <app-s3-doc-uploader 
-        label="Next step: Please upload a copy of your OPT EAD" 
+        label="Next Step: Please upload a copy of your OPT EAD" 
         (docUploadedToS3Event)='onloadingFile($event)'
         ></app-s3-doc-uploader>
     </div>
@@ -36,7 +36,7 @@
       </div>
       <br/>
       <app-s3-doc-uploader
-        label="Next step: Please download and fill your I-983 form"
+        label="Next Step: Please download and fill your I-983 form"
         (docUploadedToS3Event)='onloadingFile($event)'
        ></app-s3-doc-uploader>
     </div>
@@ -48,7 +48,7 @@
     <div *ngIf="findDocumentByOrder(person.employee.personalDocuments) === 'Signed I-983'">
       <br/>
       <app-s3-doc-uploader
-        label="Next step: Please send the HR signed I-983 with all necessary documents to your school and upload the new I-20"
+        label="Next Step: Please upload the new I-20"
         (docUploadedToS3Event)='onloadingFile($event)'></app-s3-doc-uploader>
     </div>
 
@@ -69,8 +69,8 @@
       <p>You have uploaded all needed documents!</p>
     </div>
     <button class="btn btn-outline-warning m-1" (click)="onclickSave(person.firstName, person.employee.id)">Save</button>
-    <button class="btn btn-outline-dark m-1" (click)="onclickHome(person.userId)">Home</button>
-    <app-confirm-dialog></app-confirm-dialog> 
+    <button class="btn btn-outline-dark m-1" (click)="onclickHome(person.userId)">Back</button>
+    
     <div *ngIf="uploadResponseStatus$ | async as status">
       <strong *ngIf="status.success; else failBlock">HR Received</strong>
       <ng-template #failBlock><strong>{{status.errorMessage}}</strong></ng-template>
@@ -80,12 +80,13 @@
   
   <br/>
   <br/>
+  
   <h4>Your Uploaded documents</h4>
   <div class="row">
-    <div class *ngFor="let document of person.employee.personalDocuments">
+    <div class='m-2' *ngFor="let document of person.employee.personalDocuments">
       <fa-icon class="documentIcon" [icon]="faFileWord" size = "5x" style="margin-left: 40%;"></fa-icon>
       <app-s3-doc-downloader
-          title = {{document.title}}
+          title = "{{document.title}}"
           description={{document.comment}}
           s3FileName = {{getFileName(document.path)}}
           s3FileUrl = {{document.path}}
@@ -93,8 +94,7 @@
       </app-s3-doc-downloader>
     </div>
   </div>
-
 </div>
 
 
-<h1>Test insert -----------------------</h1>
+
