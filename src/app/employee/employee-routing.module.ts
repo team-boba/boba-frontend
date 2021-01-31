@@ -7,7 +7,7 @@ import { EmployeeFormComponent } from './component/employee-form/employee-form.c
 import { NgModule, Component } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
 
-import { EmployeeComponent } from './employee.component';
+import { AuthenticationGuard } from '../shared/auth/authentication-guard.service';
 
 const routes: Routes = [
   {
@@ -30,12 +30,9 @@ const routes: Routes = [
     path: 'personal-document-form',
     component: PersonalDocumentFormComponent
   },
-  { 
-    path: ':userId/:houseId',
-    component: EmployeeHomeComponent
-  },
   {
     path: ':userId',
+    canActivate: [AuthenticationGuard],
     component: EmployeeHomeComponent
   }
 ];
