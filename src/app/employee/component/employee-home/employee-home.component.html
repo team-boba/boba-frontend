@@ -1,10 +1,15 @@
 <div *ngIf="person$ | async as person">
-    <div *ngIf="person.employee.applicationWorkflow.status!=='completed'">
-        <span>
-            Application is not complete, message from HR:
-            <hr>
+    <div *ngIf="person.employee.applicationWorkflow.status!=='completed'" class="my-2">
+        <div class="alert alert-danger" role="alert">
+            Application is not complete, STATUS: {{person.employee.applicationWorkflow.status}}.
+            <br>
+            Please contact HR for further notice.
+        </div>
+        <div class="alert alert-warning" role="alert" *ngIf="person.employee.applicationWorkflow.comments">
+            Message from HR:
             {{person.employee.applicationWorkflow.comments}}
-        </span>
+        </div>
+        <hr>
     </div>
 
     <div class="row">
