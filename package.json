@@ -26,7 +26,9 @@
     "font-awesome": "^4.7.0",
     "moment": "^2.29.1",
     "ngx-bootstrap": "^6.2.0",
+    "ngx-cookie-service": "^11.0.2",
     "rxjs": "~6.6.0",
+    "save": "^2.4.0",
     "tslib": "^2.0.0",
     "zone.js": "~0.10.2"
   },
