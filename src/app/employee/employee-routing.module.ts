@@ -44,11 +44,6 @@ const routes: Routes = [
     path: ':userId',
     component: EmployeeHomeComponent
   },
-  {
-    path: '',
-    component: EmployeeComponent
-  }
-
 ];
 
 @NgModule({
