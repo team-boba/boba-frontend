@@ -8,7 +8,6 @@ import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 import { ConfirmationDialogModule } from './../confirmation-dialog/confirmation-dialog.module';
 
 import { EmployeeRoutingModule } from './employee-routing.module';
-import { EmployeeComponent } from './employee.component';
 import { HttpClientModule } from '@angular/common/http';
 import { PersonFormComponent } from './component/person-form/person-form.component';
 import { AddressFormComponent } from './component/address-form/address-form.component';
@@ -23,7 +22,6 @@ import { ProfileDocumentSectionComponent } from './component/profile-document-se
 
 @NgModule({
   declarations: [
-    EmployeeComponent,
     EmployeeFormComponent,
     PersonFormComponent,
     AddressFormComponent,
