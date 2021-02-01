@@ -4,7 +4,8 @@
       <a
         [routerLink]="['/hr/hire', applicationWorkflow.id]"
         class="list-group-item"
-        *ngFor="let applicationWorkflow of applicationWorkflowRequests$ | async">
+        *ngFor="let applicationWorkflow of applicationWorkflowRequests$ | async"
+        [ngStyle]="applicationWorkflow.status==='rejected' ? {'color':'grey'} : (applicationWorkflow.status==='completed' ? {'color':'green'}: {'color':'black'})">
         {{ applicationWorkflow.id }}. {{applicationWorkflow.type}} - {{applicationWorkflow.status}}
       </a>
     </div>
