@@ -1,0 +1,22 @@
+<table datatable [dtOptions]="dtOptions" [dtTrigger]="dtTrigger" class="row-border hover">
+    <thead>
+        <tr>
+          <th scope="col">#</th>
+          <th scope="col">Name</th>
+          <th scope="col">SSN</th>
+          <th scope="col">Starting Date</th>
+          <th scope="col">Visa Status</th>
+          <th scope="col">View Detail</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let profileSummaryRequest of profileSummaryRequests; let pos=index;">
+          <th scope="row">{{profileSummaryRequest.employeeId}}</th>
+          <td>{{profileSummaryRequest.firstName}} {{profileSummaryRequest.middleName}} {{profileSummaryRequest.lastName}}</td>
+          <td>{{profileSummaryRequest.ssn}}</td>
+          <td>{{profileSummaryRequest.startDate}}</td>
+          <td>{{profileSummaryRequest.visaType}}</td>
+          <td><a [routerLink]="['/employee', profileSummaryRequest.userId]">Profile Detail</a></td>
+        </tr>
+      </tbody>
+  </table>

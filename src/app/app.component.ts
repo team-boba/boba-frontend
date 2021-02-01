@@ -1,3 +1,4 @@
+import { AuthService } from './shared/auth/auth.service';
 import { Component } from '@angular/core';
 import { Location } from '@angular/common';
 
@@ -11,11 +12,13 @@ export class AppComponent {
   role: string;
 
   constructor(
-    private location: Location
+    private location: Location,
+    private authService: AuthService
   ) {}
   
   ngOnInit() {
     this.role = this.getRole(this.location.path());
+    this.authService.setRole(this.role);
   }
 
   getRole(url): string {

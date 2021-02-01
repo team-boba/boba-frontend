@@ -16,14 +16,6 @@
                 Title must be greater than 1 character.
             </div>
         </div>
-    
-        <div class="form-group">
-            <label>Manager</label>
-            <select class="form-control" formControlName="manager">
-                <option value="">Choose your manager</option>
-                <option *ngFor="let personName of personNames" [ngValue]="personName">{{personName}}</option>
-            </select>
-        </div>
 
         <div class="form-group">
             <label>Start Date</label>
@@ -47,7 +39,11 @@
             </div>
         </div>
 
-        <app-s3-image-uploader [label]="avatarLabel" (imageUploadedToS3Event)='onAvatarImageUploadedToS3Event($event)' ></app-s3-image-uploader>
+        <app-s3-image-uploader
+            [imageS3Url]="returnAvatarImageUrl" 
+            [label]="avatarLabel" 
+            (imageUploadedToS3Event)='onAvatarImageUploadedToS3Event($event)' 
+        ></app-s3-image-uploader>
     
         <div class="form-group">
             <label>Car</label>
@@ -61,6 +57,12 @@
                     <option value="">Choose your visa status</option>
                     <option *ngFor="let visaType of visaTypes" [ngValue]="visaType">{{visaType}}</option>
                 </select>
+                <div 
+                    class="alert alert-danger"
+                    *ngIf="visaStatusControls.visaType.invalid && visaStatusControls.visaType.touched && visaStatusControls.visaType.errors?.selectionNotEmpty"
+                >
+                    Must select a valid option.
+                </div>
             </div>
             
             <div *ngIf="visaStatusControls.visaType.value" class="form-group ml-5">
@@ -109,6 +111,13 @@
             </div>
         </div>
 
-        <button type="submit" class="btn btn-outline-warning" [disabled]="!employeeForm.valid">Submit</button>
+        <div *ngIf="!returnUserId">
+            <button type="submit" class="btn btn-outline-warning" [disabled]="!employeeForm.valid">next</button>
+        </div>
+        <div *ngIf="returnUserId">
+            <button type="submit" class="btn btn-outline-warning m-1" [disabled]="!employeeForm.valid">Save</button>
+            <button type="button" class="btn btn-outline-dark m-1" (click)="back()">Back</button>
+        </div>
     </form>
 </div>
+

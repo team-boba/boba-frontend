@@ -1,0 +1,64 @@
+<table>
+    <tr>
+        <td>Application Id :</td>
+        <td>{{applicationWorkflowRequest.id}}</td>
+    </tr>
+    <tr>
+        <td>First Name :</td>
+        <td>{{applicationWorkflowRequest.firstName}}</td>
+    </tr>
+    <tr>
+        <td>Last Name :</td>
+        <td>{{applicationWorkflowRequest.lastName}}</td>
+    </tr>
+    <tr>
+        <td>Middle Name :</td>
+        <td>{{applicationWorkflowRequest.middleName}}</td>
+    </tr>
+    <tr>
+        <td>Email :</td>
+        <td>{{applicationWorkflowRequest.email}}</td>
+    </tr>
+    <tr>
+        <td>Created Date :</td>
+        <td>{{applicationWorkflowRequest.createdDate}}</td>
+    </tr>
+    <tr>
+        <td>Modification Date :</td>
+        <td>{{applicationWorkflowRequest.modificationDate}}</td>
+    </tr>
+    <tr>
+        <td>Type :</td>
+        <td>{{applicationWorkflowRequest.type}}</td>
+    </tr>
+
+</table>
+
+<a [routerLink]="['/employee', applicationWorkflowRequest.userId]">View Application Detail</a>
+
+<br><br>
+
+<div class="form-group">
+    <label for="comments">Comments</label>
+    <input
+      type="text"
+      id="comments"
+      class="form-control"
+      [(ngModel)]="comments">
+</div>
+
+<div class="form-group">
+    <label for="status">Status</label>
+    <select
+        id="status"
+        class="form-control"
+        [(ngModel)]="status">
+        <option value="rejected">Rejected</option>
+        <option value="completed">Completed</option>
+        <option value="pending">Pending</option>
+    </select>
+</div>
+
+<button
+class="btn btn-primary"
+(click)="onUpdate()">Update Status</button>

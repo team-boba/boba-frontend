@@ -1,0 +1,17 @@
+ <div class="card">
+    <div class="card-header">
+        Profile Address Section
+    </div>
+    <div class="card-body">
+        <ul class="list-group list-group-flush">
+            <li class="list-group-item">Address Line One: {{addressLineOne}}</li>
+            <li class="list-group-item">Address Line Two: {{addressLineTwo}}</li>
+            <li class="list-group-item">City: {{city}}</li>
+            <li class="list-group-item">Zipcode: {{zipcode}}</li>
+            <li class="list-group-item">State: {{fullState}}</li>
+        </ul>
+    </div>
+    <div *ngIf="role!=='hr'" class="card-footer">
+        <button type="button" class="card-link btn btn-outline-success" (click)="navigateAddressForm()">Edit</button>
+    </div>
+</div>

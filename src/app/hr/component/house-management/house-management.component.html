@@ -26,7 +26,6 @@
     <td mat-cell *matCellDef="let element"> {{element.numberOfPerson}} </td>
   </ng-container>
  
-   <!-- Expanded Content Column - The detail row is made up of this one column that spans across all columns -->
    <ng-container matColumnDef="expandedDetail">
      <td mat-cell *matCellDef="let element" [attr.colspan]="columnsToDisplay.length">
        <div class="example-element-detail"
@@ -59,13 +58,6 @@
               </ng-container>
               </tbody>
             </table>
-
-
-           <!-- <title>Employee Info</title>
-            <div class="example-element-name">Name: {{element.name}} </div>
-            <div class="example-element-name">Phone: {{element.phone}} </div>
-            <div class="example-element-name">Email: {{element.email}} </div>
-            <div class="example-element-name">Car: {{element.car}} </div> -->
          </div>
       </div>
        

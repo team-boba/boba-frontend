@@ -18,10 +18,4 @@ export class HouseBackendService{
         const url = '/api' + this.houseManagementUrl;
         return this.http.get<HouseManagementResponse>(url);
     }
-
-    
-
-    // public submitHouseInfo(houseInfo: HouseInfo){
-    //     const utl = '/api'
-    // }
 }

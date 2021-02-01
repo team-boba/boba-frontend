@@ -1,0 +1,19 @@
+<div class="card">
+    <div class="card-header">
+        Profile Employment Section
+    </div>
+    <img class="card-img-top" src={{avatar}} alt="employee avatar" height="300em">
+    <div class="card-body">
+        <ul class="list-group list-group-flush">
+            <li class="list-group-item">Title: {{employeeTitle}}</li>
+            <li class="list-group-item">Visa Type: {{visaType}}</li>
+            <li class="list-group-item">Visa Start Date: {{visaStartDate}}</li>
+            <li class="list-group-item">Visa End Date: {{visaEndDate}}</li>
+            <li class="list-group-item">Employment Start Date: {{employmentStartDate}}</li>
+            <li class="list-group-item">Employment End Date: {{employmentEndDate}}</li>
+        </ul>
+    </div>
+    <div *ngIf="role!=='hr'" class="card-footer">
+        <button type="button" class="card-link btn btn-outline-success" (click)="navigateEmployeeForm()">Edit</button>
+    </div>
+</div>

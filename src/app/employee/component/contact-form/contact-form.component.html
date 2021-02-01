@@ -1,0 +1,62 @@
+<title>Contact</title>
+    <div class="my-5">
+    <form [formGroup]="contactForm" (ngSubmit)="onSubmit()">
+        <label>Reference Contact</label>
+        <div class="form-group" formGroupName="reference"> 
+
+            <div class="form-group">
+                <label>Title</label>
+                <input type="text" formControlName="title" class="form-control" placeholder="Enter title" required minlength=2>
+                <div 
+                    class="alert alert-danger"
+                    *ngIf="referenceControls.title.invalid && referenceControls.title.touched && referenceControls.title.errors?.required"
+                >
+                    Title is required
+                </div>
+            </div>
+            <div class="form-group">
+                <label>Relationship</label>
+                <input type="text" formControlName="relationship" class="form-control" placeholder="Enter relationship" required minlength=2>
+                <div 
+                    class="alert alert-danger"
+                    *ngIf="referenceControls.relationship.invalid && referenceControls.relationship.touched && referenceControls.relationship.errors?.required"
+                >
+                    Relationship is required
+                </div>
+            </div>
+        </div>
+        <label>Emergency Contact</label>
+        <div class="form-group" formGroupName="emergency"> 
+
+            <div class="form-group">
+                <label>Title</label>
+                <input type="text" formControlName="title" class="form-control" placeholder="Enter title" required minlength=2>
+                <div 
+                    class="alert alert-danger"
+                    *ngIf="emergencyControls.title.invalid && emergencyControls.title.touched && emergencyControls.title.errors?.required"
+                >
+                    Title is required
+                </div>
+            </div>
+            <div class="form-group">
+                <label>Relationship</label>
+                <input type="text" formControlName="relationship" class="form-control" placeholder="Enter relationship" required minlength=2>
+                <div 
+                    class="alert alert-danger"
+                    *ngIf="emergencyControls.relationship.invalid && emergencyControls.relationship.touched && emergencyControls.relationship.errors?.required"
+                >
+                    Relationship is required
+                </div>
+            </div>
+        </div>
+        
+        <div *ngIf="!returnUserId">
+            <button type="submit" class="btn btn-outline-warning" [disabled]="!contactForm.valid">next</button>
+        </div>
+        <div *ngIf="returnUserId">
+            <button type="submit" class="btn btn-outline-warning m-1" [disabled]="!contactForm.valid">Save</button>
+            <button type="button" class="btn btn-outline-dark m-1" (click)="back()">Back</button>
+        </div>
+    </form>
+
+</div>

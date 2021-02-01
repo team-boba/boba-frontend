@@ -21,11 +21,9 @@ import { EmployeeInfo } from '../../domain/employeeInfo.model';
   ],
 })
 export class HouseManagementComponent implements OnInit {
-  //employeeInfos: EmployeeInfo[];
   dataSource: HouseManagementRequest[] = [];
   columnsToDisplay = ['address', 'landlord', 'landlordPhone', 'landlordEmail', 'numberOfPerson'];
   expandedElement: HouseManagementRequest | null;
-  //houseManagementRequests$: Observable<HouseManagementRequest[]>;
 
   constructor(
     private houseStoreService: HouseStoreService

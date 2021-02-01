@@ -6,12 +6,11 @@
       "^/api": ""
     }
   },
-  "/bucket/download": {
-    "target": "http://localhost:8080/bucket/download",
+  "/2api": {
+    "target": "http://localhost:9999",
     "secure": false,
-    "changeOrigin": true,
     "pathRewrite": {
-      "^/bucket/download": ""
+      "^/2api": ""
     }
   }
 }

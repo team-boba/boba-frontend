@@ -21,18 +21,11 @@ export class HouseStoreService{
                         return new HouseManagementRequest(
                             houseManagementRequest.houseId,
                             houseManagementRequest.address,
-                            // houseManagementRequest.landlord,
-                            // houseManagementRequest.landlordPhone,
-                            // houseManagementRequest.landlordEmail,
                             houseManagementRequest.numberOfPerson,
                             houseManagementRequest.numberOfBeds,
                             houseManagementRequest.numberOfMattresses,
                             houseManagementRequest.numberOfTables,
                             houseManagementRequest.numberOfChairs,
-                            // houseManagementRequest.name,
-                            // houseManagementRequest.phone,
-                            // houseManagementRequest.email,
-                            // houseManagementRequest.car
                             houseManagementRequest.employeeInfos
                         ); }
                 );

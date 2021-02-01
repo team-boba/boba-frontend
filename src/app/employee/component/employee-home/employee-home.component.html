@@ -1,0 +1,69 @@
+<div *ngIf="person$ | async as person">
+    <div *ngIf="person.employee.applicationWorkflow.status!=='completed'" class="my-2">
+        <div class="alert alert-danger" role="alert">
+            Application is not complete, STATUS: {{person.employee.applicationWorkflow.status}}.
+            <br>
+            Please contact HR for further notice.
+        </div>
+        <div class="alert alert-warning" role="alert" *ngIf="person.employee.applicationWorkflow.comments">
+            Message from HR:
+            {{person.employee.applicationWorkflow.comments}}
+        </div>
+        <hr>
+    </div>
+
+    <div class="row">
+        <div class="col-4 my-3">
+            <app-profile-employment-section
+                [avatar]="person.employee.avatar"
+                [employeeTitle]="person.employee.title"
+                [visaType]="person.employee.visaStatus.visaType"
+                [visaStartDate]="person.employee.visaStartDate"
+                [visaEndDate]="person.employee.visaEndDate"
+                [employmentStartDate]="person.employee.startDate"
+                [employmentEndDate]="person.employee.endDate"
+            >
+            </app-profile-employment-section>
+        </div>
+
+        <div class="col-4 my-3">
+            <app-profile-name-section
+                [fullName]="person.firstName + ' ' + person.middleName + ' ' + person.lastName"
+                [email]="person.email"
+                [cellphone]="person.cellphone"
+                [gender]="person.gender"
+                [ssnFourDigits]="person.ssn.substring(0, 5)"
+                [dob]="person.dob"
+            >
+            </app-profile-name-section>
+        </div>
+
+        <div class="col-4 my-3">
+            <app-profile-document-section
+                [personalDocuments]="person.employee.personalDocuments"
+            >
+            </app-profile-document-section>
+        </div>
+
+        <div class="col-4 my-3">
+            <app-profile-address-section
+                [addressLineOne]="person.address.addressLineOne"
+                [addressLineTwo]="person.address.addressLineTwo"
+                [city]="person.address.city"
+                [zipcode]="person.address.zipcode"
+                [fullState]="person.address.stateName + '(' + person.address.stateAbbr + ')'"
+            >
+            </app-profile-address-section>
+        </div>
+
+        <div class="col-4 my-3">
+            <app-profile-contactinfo-section
+                [referenceTitle]="person.contacts[0].title"
+                [referenceRelationship]="person.contacts[0].relationship"
+                [emergencyTitle]="person.contacts[1].title"
+                [emergencyRelationship]="person.contacts[1].relationship"
+            >
+            </app-profile-contactinfo-section>
+        </div>
+    </div>
+</div>

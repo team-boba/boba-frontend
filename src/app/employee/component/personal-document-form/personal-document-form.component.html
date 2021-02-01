@@ -1,0 +1,19 @@
+<app-s3-doc-uploader 
+    [docS3Url]="returnDocUrl1"
+    [label]="DocLabel1" 
+    (docUploadedToS3Event)='onGetDocPath1($event)' >
+</app-s3-doc-uploader>
+
+<app-s3-doc-uploader 
+    [docS3Url]="returnDocUrl2"
+    [label]="DocLabel2" 
+    (docUploadedToS3Event)='onGetDocPath2($event)' 
+></app-s3-doc-uploader>
+
+<div *ngIf="!returnUserId">
+    <button type="submit" class="btn btn-outline-warning" (click)="onSubmit()">Submit</button>
+</div>
+<div *ngIf="returnUserId">
+    <button type="submit" class="btn btn-outline-warning m-1" (click)="onSubmit()">Save</button>
+    <button type="button" class="btn btn-outline-dark m-1" (click)="back()">Back</button>
+</div>
