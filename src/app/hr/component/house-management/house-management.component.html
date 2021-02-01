@@ -31,15 +31,17 @@
        <div class="example-element-detail"
             [@detailExpand]="element == expandedElement ? 'expanded' : 'collapsed'">
         <div class="example-element-diagram">
-          <title class="example-element-name">Facility Info</title>
+          <p>Facility Info</p>
            <div class="example-element-name">Number of beds: {{element.numberOfBeds}} </div>
            <div class="example-element-name">Number of mattresses: {{element.numberOfMattresses}} </div>
            <div class="example-element-name">Number of tables: {{element.numberOfTables}} </div>
            <div class="example-element-name">Number of chairs: {{element.numberOfChairs}} </div>
          </div>
          <div class="example-element-description">
+           <p>Employee Info</p>
            <table>
              <tr>
+               <th scope="col">#</th>
                <th scope="col">Name</th>
                <th scope="col">Phone</th>
                <th scope="col">Email</th>
