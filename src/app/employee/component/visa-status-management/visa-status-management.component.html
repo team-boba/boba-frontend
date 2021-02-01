@@ -1,0 +1,101 @@
+
+<div *ngIf="person$ | async as person">
+
+    <div *ngIf="findDocumentByOrder(person.employee.personalDocuments) === 'NoFind'" >
+      <app-s3-doc-uploader 
+        label="Next Step: Please upload a copy of your OPT Receipt" 
+        (docUploadedToS3Event)='onloadingFile($event)'
+        ></app-s3-doc-uploader>
+    </div>
+
+    <div>
+      <div *ngIf="findDocumentByOrder(person.employee.personalDocuments) === 'OPT Receipt'">
+      <app-s3-doc-uploader 
+        label="Next Step: Please upload a copy of your OPT EAD" 
+        (docUploadedToS3Event)='onloadingFile($event)'
+        ></app-s3-doc-uploader>
+    </div>
+
+
+    <div *ngIf="findDocumentByOrder(person.employee.personalDocuments) === 'OPT EAD' && validEADDate(person.employee.visaEndDate)">
+      
+      <div> 
+          <app-s3-doc-downloader
+            title="I-983 form" 
+            description="This is an empty template" 
+            s3FileName="1611711498205-i983.pdf"
+            s3FileUrl="https://s3.us-west-1.amazonaws.com/beaconfire-team-boba/1611711498205-i983.pdf"
+          ></app-s3-doc-downloader>
+          
+          <app-s3-doc-downloader
+            title="I-983 form" 
+            description="This is an sample template with instruction" 
+            s3FileName="1611711498205-i983.pdf"
+            s3FileUrl="https://s3.us-west-1.amazonaws.com/beaconfire-team-boba/1611711498205-i983.pdf"
+          ></app-s3-doc-downloader>
+      </div>
+      <br/>
+      <app-s3-doc-uploader
+        label="Next Step: Please download and fill your I-983 form"
+        (docUploadedToS3Event)='onloadingFile($event)'
+       ></app-s3-doc-uploader>
+    </div>
+
+    <div *ngIf="findDocumentByOrder(person.employee.personalDocuments) === 'I-983'">
+      <p>Waiting for HR to approve and sign I-983</p>
+    </div>
+
+    <div *ngIf="findDocumentByOrder(person.employee.personalDocuments) === 'Signed I-983'">
+      <br/>
+      <app-s3-doc-uploader
+        label="Next Step: Please upload the new I-20"
+        (docUploadedToS3Event)='onloadingFile($event)'></app-s3-doc-uploader>
+    </div>
+
+    <div *ngIf="findDocumentByOrder(person.employee.personalDocuments) === 'I-20'">
+      <app-s3-doc-uploader
+        label="Please upload a copy of your OPT STEM Receipt"
+        (docUploadedToS3Event)='onloadingFile($event)'></app-s3-doc-uploader>
+    </div>
+
+
+    <div *ngIf="findDocumentByOrder(person.employee.personalDocuments) === 'OPT STEM Receipt'">
+      <app-s3-doc-uploader
+        label="Please upload a copy of your OPT STEM EAD"
+        (docUploadedToS3Event)='onloadingFile($event)'></app-s3-doc-uploader>
+    </div>
+
+    <div *ngIf="findDocumentByOrder(person.employee.personalDocuments) === 'OPT STEM EAD'">
+      <p>You have uploaded all needed documents!</p>
+    </div>
+    
+    <button *ngif="findDocumentByOrder(person.employee.personalDocuments) !== 'OPT STEM EAD'" class="btn btn-outline-warning m-1" (click)="onclickSave(person.firstName, person.employee.id)">Save</button>
+    <button class="btn btn-outline-dark m-1" (click)="onclickHome(person.userId)">Back</button>
+    
+    <div *ngIf="uploadResponseStatus$ | async as status">
+      <strong *ngIf="status.success; else failBlock">HR Received</strong>
+      <ng-template #failBlock><strong>{{status.errorMessage}}</strong></ng-template>
+    </div>
+    
+  </div>
+  
+  <br/>
+  <br/>
+  
+  <h4>Your Uploaded documents</h4>
+  <div class="row">
+    <div class='m-2' *ngFor="let document of optDocumentFilter(person.employee.personalDocuments)">
+      <fa-icon class="documentIcon" [icon]="faFileWord" size = "5x" style="margin-left: 40%;"></fa-icon>
+      <app-s3-doc-downloader
+          title = {{document.title}}
+          description={{document.comment}}
+          s3FileName = {{getFileName(document.path)}}
+          s3FileUrl = {{document.path}}
+      >
+      </app-s3-doc-downloader>
+    </div>
+  </div>
+</div>
+
+
+
