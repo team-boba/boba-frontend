@@ -37,6 +37,10 @@ const routes: Routes = [
     component: PersonalDocumentFormComponent
   },
   {
+    path: ':userId/:houseId',
+    component: EmployeeHomeComponent
+  },
+  {
     path: ':userId',
     canActivate: [AuthenticationGuard],
     component: EmployeeHomeComponent
