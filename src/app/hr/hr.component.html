@@ -4,3 +4,30 @@
       <p class="lead">You are authorized to manage employee onboarding application.</p>
     </div>
 </div>
+
+<h4>Visa Status Tracking Table</h4>
+<div class="container my-3">
+  <table class="table table-white">
+    <thead>
+      <tr>
+        <th scope="col">Full Name</th>
+        <th scope="col">Work Authorization</th>
+        <th scope="col">Expiration Date</th>
+        <th scope="col">Day Left</th>
+        <th scope="col">Action Required</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let visaManagementRequest of visaManagementRequests$ | async; let pos=index;" >
+        <!-- <th scope="row">{{pos+1}}</th> -->
+        <td *ngIf="visaManagementRequest.action!=='nothing needed'">
+          <a [routerLink]="['/hr/visa-management']">{{visaManagementRequest.firstName}} {{visaManagementRequest.middleName}} {{visaManagementRequest.lastName}}</a>
+        </td>
+        <td *ngIf="visaManagementRequest.action!=='nothing needed'">F1/OPT</td>
+        <td *ngIf="visaManagementRequest.action!=='nothing needed'">{{visaManagementRequest.visaEndDate}}</td>
+        <td *ngIf="visaManagementRequest.action!=='nothing needed'">{{visaManagementRequest.dayLeft}}</td>
+        <td *ngIf="visaManagementRequest.action!=='nothing needed'">{{visaManagementRequest.action}}</td>
+      </tr>
+    </tbody>
+  </table>
+</div>
