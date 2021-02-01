@@ -11,6 +11,7 @@ import { Location } from '@angular/common';
 export class AuthService {
   JWT_TOKEN_COOKIE_NAME = "TEAMBOBA-JWT-TOKEN";
   serializeUser: SerializeUser;
+  role: string;
 
   constructor(
     private cookieService: CookieService,
@@ -71,5 +72,13 @@ export class AuthService {
         }
       }
     )
+  }
+
+  setRole(role: string) {
+    this.role = role;
+  }
+
+  getRole() {
+    return this.role;
   }
 }

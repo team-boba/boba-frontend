@@ -1,5 +1,6 @@
 import { Component, Input, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
+import { AuthService } from 'src/app/shared/auth/auth.service';
 
 @Component({
   selector: 'app-profile-employment-section',
@@ -14,12 +15,15 @@ export class ProfileEmploymentSectionComponent implements OnInit {
   @Input() visaEndDate: string;
   @Input() employmentStartDate: string;
   @Input() employmentEndDate: string;
+  role: string;
 
   constructor(
-    private router: Router
+    private router: Router,
+    private authService: AuthService
   ) { }
 
   ngOnInit(): void {
+    this.role = this.authService.getRole();
   }
 
   navigateEmployeeForm() {

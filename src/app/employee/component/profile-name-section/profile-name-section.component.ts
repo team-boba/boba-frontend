@@ -1,3 +1,4 @@
+import { AuthService } from './../../../shared/auth/auth.service';
 import { Router } from '@angular/router';
 import { Component, Input, OnInit } from '@angular/core';
 
@@ -13,12 +14,15 @@ export class ProfileNameSectionComponent implements OnInit {
   @Input() gender: string;
   @Input() ssnFourDigits: string;
   @Input() dob: string;  
+  role: string;
 
   constructor(
-    private router: Router 
+    private router: Router,
+    private authService: AuthService
   ) { }
 
   ngOnInit(): void {
+    this.role = this.authService.getRole();
   }
 
   navigatePersonForm() {
