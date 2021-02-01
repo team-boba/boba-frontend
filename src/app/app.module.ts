@@ -14,13 +14,10 @@ import { ErrorPageComponent } from './component/error-page/error-page.component'
 import { CommonModule } from '@angular/common';
 import { SharedcomponentsModule } from './sharedcomponents/sharedcomponents.module';
 import { MatTableModule } from '@angular/material/table';
-<<<<<<< HEAD
-=======
 import { AuthenticationGuard } from './shared/auth/authentication-guard.service';
 import { AuthService } from './shared/auth/auth.service';
 import { CookieService } from 'ngx-cookie-service';
 import { AuthorizationGuard } from './shared/auth/authorized-guard.service';
->>>>>>> 816c4c732487349593ee2bce03e636182b113592
 
 @NgModule({
   declarations: [
