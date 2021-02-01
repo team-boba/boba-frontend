@@ -40,7 +40,7 @@ const routes: Routes = [
     path: ':userId',
     canActivate: [AuthenticationGuard],
     component: EmployeeHomeComponent
-  },
+  }
 ];
 
 @NgModule({

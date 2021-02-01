@@ -9,12 +9,10 @@ import { UploadDocumentResponse } from '../../domain/UploadDocumentResponse.mode
   providedIn: 'root'
 })
 export class VisaStatusManagementBackendService {
+  constructor(private http : HttpClient) { }
 
-
-constructor(private http : HttpClient) { }
-
-public getUploadDocumentResponse(uploadDocumentRequest: UploadDocumentRequest): Observable<UploadDocumentResponse>{
-  const url = '/api/vsm/uploadDocument'
-  return this.http.post<UploadDocumentResponse>(url, uploadDocumentRequest);
-}
+  public getUploadDocumentResponse(uploadDocumentRequest: UploadDocumentRequest): Observable<UploadDocumentResponse>{
+    const url = '/api/vsm/uploadDocument'
+    return this.http.post<UploadDocumentResponse>(url, uploadDocumentRequest);
+  }
 }
