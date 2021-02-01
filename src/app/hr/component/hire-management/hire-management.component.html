@@ -3,8 +3,6 @@
     <div class="list-group">
       <a
         [routerLink]="['/hr/hire', applicationWorkflow.id]"
-        fragment="loading"
-        href="#"
         class="list-group-item"
         *ngFor="let applicationWorkflow of applicationWorkflowRequests$ | async">
         {{ applicationWorkflow.id }}. {{applicationWorkflow.type}} - {{applicationWorkflow.status}}
