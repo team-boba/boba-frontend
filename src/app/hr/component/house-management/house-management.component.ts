@@ -1,3 +1,4 @@
+import { HouseBackendService } from './../../house-backend/house-backend.service';
 import { HouseManagementRequest } from './../../domain/houseManagementRequest.model';
 import { HouseStoreService } from './../../house-store/house-store.service';
 import { Component, OnInit } from '@angular/core';
@@ -5,6 +6,7 @@ import { Observable } from 'rxjs';
 import {animate, state, style, transition, trigger} from '@angular/animations';
 import { ActivatedRoute } from '@angular/router';
 import { ConfirmDialogService } from 'src/app/confirmation-dialog/shared/confirm-dialog/confirm-dialog.service';
+import { EmployeeInfo } from '../../domain/employeeInfo.model';
 
 @Component({
   selector: 'app-house-management',
@@ -19,10 +21,11 @@ import { ConfirmDialogService } from 'src/app/confirmation-dialog/shared/confirm
   ],
 })
 export class HouseManagementComponent implements OnInit {
-  dataSource : HouseManagementRequest[] = [];
+  //employeeInfos: EmployeeInfo[];
+  dataSource: HouseManagementRequest[] = [];
   columnsToDisplay = ['address', 'landlord', 'landlordPhone', 'landlordEmail', 'numberOfPerson'];
   expandedElement: HouseManagementRequest | null;
-  houseManagementRequests$: Observable<HouseManagementRequest[]>;
+  //houseManagementRequests$: Observable<HouseManagementRequest[]>;
 
   constructor(
     private houseStoreService: HouseStoreService
@@ -34,6 +37,16 @@ export class HouseManagementComponent implements OnInit {
       this.dataSource = data;
     });
   }
- 
+
+
+  toArray(employeeInfos: object){
+    let arr = [];
+    console.log();
+    Object.keys(employeeInfos).map(function(key){
+      arr.push({[key]: employeeInfos[key]});
+      return arr;
+    });
+  }
+
 
 }
