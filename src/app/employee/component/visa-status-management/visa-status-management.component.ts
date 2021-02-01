@@ -55,7 +55,7 @@ export class VisaStatusManagementComponent implements OnInit {
      
       if(person.employee.visaStatus.visaType !== 'F1(CPT/OPT)'){
         const homeURL = '/employee/' + person.userId;
-        alert("Vise Status is not F1(CPT/OPT)")
+        alert("Visa Status is not F1(CPT/OPT)")
         this.router.navigate([homeURL]);
       }
       
