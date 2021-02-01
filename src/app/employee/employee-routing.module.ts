@@ -1,4 +1,6 @@
+import { VisaStatusManagementComponent } from './component/visa-status-management/visa-status-management.component';
 import { EmployeeHomeComponent } from './component/employee-home/employee-home.component';
+
 import { PersonFormComponent } from './component/person-form/person-form.component';
 import { AddressFormComponent } from './component/address-form/address-form.component';
 import { ContactFormComponent } from './component/contact-form/contact-form.component';
@@ -10,6 +12,10 @@ import { Routes, RouterModule } from '@angular/router';
 import { AuthenticationGuard } from '../shared/auth/authentication-guard.service';
 
 const routes: Routes = [
+  {
+    path: 'visa-status-management',
+    component: VisaStatusManagementComponent
+  },
   {
     path: 'person-form',
     component: PersonFormComponent
@@ -34,7 +40,7 @@ const routes: Routes = [
     path: ':userId',
     canActivate: [AuthenticationGuard],
     component: EmployeeHomeComponent
-  }
+  },
 ];
 
 @NgModule({
