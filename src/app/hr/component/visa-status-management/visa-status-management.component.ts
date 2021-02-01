@@ -1,8 +1,10 @@
 import {Component} from '@angular/core';
 import {animate, state, style, transition, trigger} from '@angular/animations';
 import { VisaManagementStoreService } from './../../shared/visa/visa-management-store.service';
+import { HrBackendService } from './../../shared/hr-backend.service';
 import { VisaManagementBackendService } from './../../shared/visa/visa-management-backend.service';
 import { VisaManagementRequest } from './../../domain/visa-management-request.model';
+import { HrEmailSendRequest } from './../../domain/hr-email-send-request.model';
 import { VisaManagementUploadRequest } from './../../domain/visa-management-upload-request.model';
 
 @Component({
@@ -23,9 +25,16 @@ export class VisaStatusManagementComponent {
     path : ""
   };
 
+  hrEmailSendRequest: HrEmailSendRequest = {
+    email : "",
+    subject: "",
+    message: ""
+  }
+
   constructor(
     private visaManagementStoreService: VisaManagementStoreService,
-    private visaManagementBackendService: VisaManagementBackendService
+    private visaManagementBackendService: VisaManagementBackendService,
+    private hrBackendService: HrBackendService
     ) {  }
 
   
@@ -42,9 +51,11 @@ export class VisaStatusManagementComponent {
   expandedElement: VisaManagementRequest | null;
 
   onSendNotification(userId: number, email: string, nextStep: string) {
-    console.log(userId);
-    console.log(email);
-    console.log(nextStep);
+    this.hrEmailSendRequest.email = email;
+    this.hrEmailSendRequest.subject = "Notification for OPT Status"
+    this.hrEmailSendRequest.message = "Next Step: " + nextStep;
+    this.hrBackendService.sendEmailToEmployee(this.hrEmailSendRequest).subscribe();
+      alert("Email is sent to employee for notification.")
   }
 
   onloadingFile(url){
@@ -54,5 +65,7 @@ export class VisaStatusManagementComponent {
   onSaveUploadedFile(employeeId: number) {
     this.visaManagementUploadRequest.employeeId = employeeId;
     this.visaManagementBackendService.uploadOPTFile(this.visaManagementUploadRequest).subscribe();
+    alert("Signed I-983 has been saved");
+    window.location.reload()
   }
 }
