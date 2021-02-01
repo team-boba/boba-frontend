@@ -19,10 +19,11 @@ export class HouseStoreService{
                 if (data.serviceStatus.success){
                     let houseManagementRequests = data.houseManagementRequests.map(houseManagementRequest => {
                         return new HouseManagementRequest(
+                            houseManagementRequest.id,
                             houseManagementRequest.address,
-                            houseManagementRequest.landlord,
-                            houseManagementRequest.landlordPhone,
-                            houseManagementRequest.landlordEmail,
+                            //houseManagementRequest.landlord,
+                            //houseManagementRequest.landlordPhone,
+                            //houseManagementRequest.landlordEmail,
                             houseManagementRequest.numberOfPerson,
                             houseManagementRequest.numberOfBeds,
                             houseManagementRequest.numberOfMattresses,

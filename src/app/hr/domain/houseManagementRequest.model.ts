@@ -1,9 +1,10 @@
 export class HouseManagementRequest {
     //house
+    public id: number;
     public address: string;
-    public landlord: string;
-    public landlordPhone: string;
-    public landlordEmail: string;
+    //public landlord: string;
+    //public landlordPhone: string;
+    //public landlordEmail: string;
     public numberOfPerson: number;
 
     //facility
@@ -25,11 +26,12 @@ export class HouseManagementRequest {
     public email: string;
     public car: string;
 
-    constructor(address: string, landlord: string, landlordPhone: string, landlordEmail: string, numberOfPerson: number, numberOfBeds: number, numberOfMattresses: number, numberOfTables: number, numberOfChairs: number, name: string, phone: string, email: string, car: string) {
+    constructor(id: number,address: string, numberOfPerson: number, numberOfBeds: number, numberOfMattresses: number, numberOfTables: number, numberOfChairs: number, name: string, phone: string, email: string, car: string) {
+            this.id = id;
             this.address = address;
-            this.landlord = landlord;
-            this.landlordPhone = landlordPhone;
-            this.landlordEmail = landlordEmail;
+            //this.landlord = landlord;
+            //this.landlordPhone = landlordPhone;
+            //this.landlordEmail = landlordEmail;
             this.numberOfPerson = numberOfPerson;
             this.numberOfBeds = numberOfBeds;
             this.numberOfMattresses = numberOfMattresses;
