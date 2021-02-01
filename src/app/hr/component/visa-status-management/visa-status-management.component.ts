@@ -42,7 +42,6 @@ export class VisaStatusManagementComponent {
     this.visaManagementStoreService.getVisaManagementRequests()
     .subscribe(data => {
       console.log(data);
-      // this.visaManagementRequests = data;
       this.dataSource = data;
     });
   }

@@ -1,5 +1,6 @@
 import { Component, Input, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
+import { AuthService } from 'src/app/shared/auth/auth.service';
 
 @Component({
   selector: 'app-profile-contactinfo-section',
@@ -11,12 +12,15 @@ export class ProfileContactinfoSectionComponent implements OnInit {
   @Input() referenceRelationship: string;
   @Input() emergencyTitle: string;
   @Input() emergencyRelationship: string;
+  role: string;
 
   constructor(
-    private router: Router
+    private router: Router,
+    private authService: AuthService
   ) { }
 
   ngOnInit(): void {
+    this.role = this.authService.getRole();
   }
 
   navigateContactForm() {

@@ -12,7 +12,7 @@
             <li class="list-group-item">Birth Date: {{dob}}</li>
         </ul>
     </div>
-    <div class="card-footer">
+    <div *ngIf="role!=='hr'" class="card-footer">
         <button type="button" class="card-link btn btn-outline-success" (click)="navigatePersonForm()">Edit</button>
     </div>
 </div>

@@ -14,7 +14,7 @@
             </app-s3-doc-downloader>
         </div>
     </div>
-    <div class="card-footer">
+    <div *ngIf="role!=='hr'" class="card-footer">
         <button type="button" class="card-link btn btn-outline-success" (click)="navigatePersonalDocumentForm()">Edit</button>
     </div>
 </div>
