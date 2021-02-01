@@ -1,5 +1,5 @@
 <nav *ngIf="role==='hr'" class="navbar navbar-expand-lg navbar-light bg-light">
-    <a class="navbar-brand" routerLink="/hr">HR</a>
+    <a class="navbar-brand" routerLink="/hr"><fa-icon [icon]="faLaptopHouse"></fa-icon> HR</a>
     <button class="navbar-toggler navbar-toggler-right" type="button" (click)="navbarCollapsed = !navbarCollapsed" [attr.aria-expanded]="!navbarCollapsed"
         aria-controls="navbarContent" aria-expanded="false" aria-label="Toggle navigation">
         <span class="navbar-toggler-icon"></span>
@@ -7,32 +7,32 @@
     <div class="collapse navbar-collapse" id="navbarNavAltMarkup" [collapse]="navbarCollapsed">
         <ul class="navbar-nav mr-auto">
             <li class="nav-item">
-                <a class="nav-item nav-link" routerLink="/hr/profile" routerLinkActive="active">Employee Profiles</a>
+                <a class="nav-item nav-link" routerLink="/hr/profile" routerLinkActive="active"><fa-icon [icon]="faUserEdit"></fa-icon> Employee Profiles</a>
             </li>
             <li class="nav-item">
-                <a class="nav-item nav-link" routerLink="/hr/visa-management" routerLinkActive="active">Visa Status Management</a>
+                <a class="nav-item nav-link" routerLink="/hr/visa-management" routerLinkActive="active"><fa-icon [icon]="faGlobe"></fa-icon> Visa Status Management</a>
             </li>
             <li class="nav-item">
-                <a class="nav-item nav-link" routerLink="/hr/generate-token" routerLinkActive="active">Generate Token</a>
+                <a class="nav-item nav-link" routerLink="/hr/generate-token" routerLinkActive="active"><fa-icon [icon]="faRegistered"></fa-icon> Generate Token</a>
             </li>
             <li class="nav-item">
-                <a class="nav-item nav-link" routerLink="/hr/hire" routerLinkActive="active">Hire</a>
+                <a class="nav-item nav-link" routerLink="/hr/hire" routerLinkActive="active"><fa-icon [icon]="faPersonBooth"></fa-icon> Hire</a>
             </li>
             <li class="nav-item">
-                <a class="nav-item nav-link" routerLink="/hr/houseManagement" routerLinkActive="active">House Management</a>
+                <a class="nav-item nav-link" routerLink="/hr/houseManagement" routerLinkActive="active"><fa-icon [icon]="faHouseUser"></fa-icon> House Management</a>
             </li>
         </ul>
 
         <ul class="navbar-nav ml-auto">
             <li class="nav-item">
-                <a class="nav-item nav-link" href="http://localhost:9999/auth/logout">Logout</a>
+                <a class="nav-item nav-link" href="http://localhost:9999/auth/logout"><fa-icon [icon]="faSignOutAlt"></fa-icon> Logout</a>
             </li>
         </ul>
     </div>
 </nav>
 
 <nav *ngIf="role==='employee'" class="navbar navbar-expand-lg navbar-light bg-light">
-    <a class="navbar-brand">EMPLOYEE</a>
+    <a class="navbar-brand"><fa-icon [icon]="faLaptopHouse"></fa-icon> EMPLOYEE</a>
     <button class="navbar-toggler navbar-toggler-right" type="button" (click)="navbarCollapsed = !navbarCollapsed" [attr.aria-expanded]="!navbarCollapsed"
         aria-controls="navbarContent" aria-expanded="false" aria-label="Toggle navigation">
         <span class="navbar-toggler-icon"></span>
@@ -40,13 +40,13 @@
     <div class="collapse navbar-collapse" id="navbarNavAltMarkup" [collapse]="navbarCollapsed">
         <ul class="navbar-nav mr-auto">
             <li class="nav-item">
-                <a class="nav-item nav-link" routerLink="/employee/visa-status-management" routerLinkActive="active">Visa Status Management</a>
+                <a class="nav-item nav-link" routerLink="/employee/visa-status-management" routerLinkActive="active"><fa-icon [icon]="faGlobe"></fa-icon> Visa Status Management</a>
             </li>
         </ul>
 
         <ul class="navbar-nav ml-auto">
             <li class="nav-item">
-                <a class="nav-item nav-link" href="http://localhost:9999/auth/logout">Logout</a>
+                <a class="nav-item nav-link" href="http://localhost:9999/auth/logout"><fa-icon [icon]="faSignOutAlt"></fa-icon> Logout</a>
             </li>
         </ul>
     </div>

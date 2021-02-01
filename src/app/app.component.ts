@@ -1,6 +1,7 @@
 import { AuthService } from './shared/auth/auth.service';
 import { Component } from '@angular/core';
 import { Location } from '@angular/common';
+import { faLaptopHouse, faGlobe, faUserEdit, faRegistered, faSignOutAlt, faPersonBooth, faHouseUser } from '@fortawesome/free-solid-svg-icons';
 
 @Component({
   selector: 'app-root',
@@ -10,6 +11,13 @@ import { Location } from '@angular/common';
 export class AppComponent {
   navbarCollapsed = true; 
   role: string;
+  faLaptopHouse = faLaptopHouse; 
+  faGlobe = faGlobe;
+  faUserEdit = faUserEdit;
+  faRegistered = faRegistered;
+  faSignOutAlt = faSignOutAlt;
+  faPersonBooth = faPersonBooth;
+  faHouseUser = faHouseUser;
 
   constructor(
     private location: Location,
