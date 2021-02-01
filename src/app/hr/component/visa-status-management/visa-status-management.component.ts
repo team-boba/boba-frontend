@@ -18,7 +18,6 @@ import { VisaManagementUploadRequest } from './../../domain/visa-management-uplo
   ],
 })
 export class VisaStatusManagementComponent {
-  // visaManagementRequests: VisaManagementRequest[];
   visaManagementUploadRequest: VisaManagementUploadRequest = {
     employeeId : 0,
     path : ""
@@ -34,7 +33,6 @@ export class VisaStatusManagementComponent {
     this.visaManagementStoreService.getVisaManagementRequests()
     .subscribe(data => {
       console.log(data);
-      // this.visaManagementRequests = data;
       this.dataSource = data;
     });
   }
