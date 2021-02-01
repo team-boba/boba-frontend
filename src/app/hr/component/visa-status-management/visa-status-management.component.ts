@@ -1,8 +1,10 @@
 import {Component} from '@angular/core';
 import {animate, state, style, transition, trigger} from '@angular/animations';
 import { VisaManagementStoreService } from './../../shared/visa/visa-management-store.service';
+import { HrBackendService } from './../../shared/hr-backend.service';
 import { VisaManagementBackendService } from './../../shared/visa/visa-management-backend.service';
 import { VisaManagementRequest } from './../../domain/visa-management-request.model';
+import { HrEmailSendRequest } from './../../domain/hr-email-send-request.model';
 import { VisaManagementUploadRequest } from './../../domain/visa-management-upload-request.model';
 
 @Component({
@@ -18,15 +20,21 @@ import { VisaManagementUploadRequest } from './../../domain/visa-management-uplo
   ],
 })
 export class VisaStatusManagementComponent {
-  // visaManagementRequests: VisaManagementRequest[];
   visaManagementUploadRequest: VisaManagementUploadRequest = {
     employeeId : 0,
     path : ""
   };
 
+  hrEmailSendRequest: HrEmailSendRequest = {
+    email : "",
+    subject: "",
+    message: ""
+  }
+
   constructor(
     private visaManagementStoreService: VisaManagementStoreService,
-    private visaManagementBackendService: VisaManagementBackendService
+    private visaManagementBackendService: VisaManagementBackendService,
+    private hrBackendService: HrBackendService
     ) {  }
 
   
@@ -47,6 +55,11 @@ export class VisaStatusManagementComponent {
     console.log(userId);
     console.log(email);
     console.log(nextStep);
+    this.hrEmailSendRequest.email = email;
+    this.hrEmailSendRequest.subject = "Notification for OPT Status"
+    this.hrEmailSendRequest.message = "Next Step: " + nextStep;
+    this.hrBackendService.sendEmailToEmployee(this.hrEmailSendRequest).subscribe();
+      alert("Email is sent to employee for notification.")
   }
 
   onloadingFile(url){
