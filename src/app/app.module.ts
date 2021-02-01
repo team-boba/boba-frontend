@@ -18,6 +18,7 @@ import { AuthenticationGuard } from './shared/auth/authentication-guard.service'
 import { AuthService } from './shared/auth/auth.service';
 import { CookieService } from 'ngx-cookie-service';
 import { AuthorizationGuard } from './shared/auth/authorized-guard.service';
+import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 
 @NgModule({
   declarations: [
@@ -36,7 +37,8 @@ import { AuthorizationGuard } from './shared/auth/authorized-guard.service';
     CollapseModule.forRoot(),
     TooltipModule.forRoot(),
     SharedcomponentsModule,
-    MatTableModule
+    MatTableModule,
+    FontAwesomeModule
   ],
   providers: [AuthenticationGuard, AuthorizationGuard, AuthService, CookieService],
   bootstrap: [AppComponent],
