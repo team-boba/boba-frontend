@@ -74,6 +74,7 @@ export class UpdateStatusComponent implements OnInit {
     this.applicationWorkflowRequest.status = this.status;
 
     this.hireBackendService.updateApplicationStatus(this.applicationWorkflowRequest).subscribe();
+    alert("Application status has been saved");
 
     if (this.applicationWorkflowRequest.status==="rejected") {
       this.hrEmailSendRequest.email = this.applicationWorkflowRequest.email;

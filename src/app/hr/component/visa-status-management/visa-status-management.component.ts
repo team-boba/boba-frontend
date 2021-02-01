@@ -52,9 +52,6 @@ export class VisaStatusManagementComponent {
   expandedElement: VisaManagementRequest | null;
 
   onSendNotification(userId: number, email: string, nextStep: string) {
-    console.log(userId);
-    console.log(email);
-    console.log(nextStep);
     this.hrEmailSendRequest.email = email;
     this.hrEmailSendRequest.subject = "Notification for OPT Status"
     this.hrEmailSendRequest.message = "Next Step: " + nextStep;
@@ -69,5 +66,6 @@ export class VisaStatusManagementComponent {
   onSaveUploadedFile(employeeId: number) {
     this.visaManagementUploadRequest.employeeId = employeeId;
     this.visaManagementBackendService.uploadOPTFile(this.visaManagementUploadRequest).subscribe();
+    alert("Signed I-983 has been saved");
   }
 }
