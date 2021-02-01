@@ -67,5 +67,6 @@ export class VisaStatusManagementComponent {
     this.visaManagementUploadRequest.employeeId = employeeId;
     this.visaManagementBackendService.uploadOPTFile(this.visaManagementUploadRequest).subscribe();
     alert("Signed I-983 has been saved");
+    window.location.reload()
   }
 }
