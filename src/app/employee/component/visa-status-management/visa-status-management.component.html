@@ -62,13 +62,14 @@
     <div *ngIf="findDocumentByOrder(person.employee.personalDocuments) === 'OPT STEM Receipt'">
       <app-s3-doc-uploader
         label="Please upload a copy of your OPT STEM EAD"
-        ></app-s3-doc-uploader>
+        (docUploadedToS3Event)='onloadingFile($event)'></app-s3-doc-uploader>
     </div>
 
     <div *ngIf="findDocumentByOrder(person.employee.personalDocuments) === 'OPT STEM EAD'">
       <p>You have uploaded all needed documents!</p>
     </div>
-    <button class="btn btn-outline-warning m-1" (click)="onclickSave(person.firstName, person.employee.id)">Save</button>
+    
+    <button *ngif="findDocumentByOrder(person.employee.personalDocuments) !== 'OPT STEM EAD'" class="btn btn-outline-warning m-1" (click)="onclickSave(person.firstName, person.employee.id)">Save</button>
     <button class="btn btn-outline-dark m-1" (click)="onclickHome(person.userId)">Back</button>
     
     <div *ngIf="uploadResponseStatus$ | async as status">

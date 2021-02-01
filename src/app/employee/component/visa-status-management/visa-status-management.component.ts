@@ -90,7 +90,7 @@ export class VisaStatusManagementComponent implements OnInit {
   optDocumentFilter(documents){
     var optdocs = []
     for(let i = 0; i < documents.length; i++){
-      if(this.DocumentsOrder.indexOf(documents[i].title) > 0){
+      if(this.DocumentsOrder.indexOf(documents[i].title) > -1){
         var doc = {}
         doc["title"] = documents[i].title;
         doc["comment"] = documents[i].comment;
