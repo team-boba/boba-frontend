@@ -1,0 +1,76 @@
+<table mat-table
+        [dataSource]="dataSource" multiTemplateDataRows
+        class="mat-elevation-z8">
+   <ng-container matColumnDef="address">
+     <th mat-header-cell *matHeaderCellDef>Address</th>
+     <td mat-cell *matCellDef="let element"> {{element.address}} </td>
+   </ng-container>
+
+   <ng-container matColumnDef="landlord">
+    <th mat-header-cell *matHeaderCellDef>Landlord</th>
+    <td mat-cell *matCellDef="let element"> landlord </td>
+  </ng-container>
+
+  <ng-container matColumnDef="landlordPhone">
+    <th mat-header-cell *matHeaderCellDef>Phone</th>
+    <td mat-cell *matCellDef="let element">landlord phone </td>
+  </ng-container>
+
+  <ng-container matColumnDef="landlordEmail">
+    <th mat-header-cell *matHeaderCellDef>landlord email</th>
+    <td mat-cell *matCellDef="let element"> landlord email </td>
+  </ng-container>
+
+  <ng-container matColumnDef="numberOfPerson">
+    <th mat-header-cell *matHeaderCellDef>Number of Employees</th>
+    <td mat-cell *matCellDef="let element"> {{element.numberOfPerson}} </td>
+  </ng-container>
+ 
+   <ng-container matColumnDef="expandedDetail">
+     <td mat-cell *matCellDef="let element" [attr.colspan]="columnsToDisplay.length">
+       <div class="example-element-detail"
+            [@detailExpand]="element == expandedElement ? 'expanded' : 'collapsed'">
+        <div class="example-element-diagram">
+          <p>Facility Info</p>
+           <div class="example-element-name">Number of beds: {{element.numberOfBeds}} </div>
+           <div class="example-element-name">Number of mattresses: {{element.numberOfMattresses}} </div>
+           <div class="example-element-name">Number of tables: {{element.numberOfTables}} </div>
+           <div class="example-element-name">Number of chairs: {{element.numberOfChairs}} </div>
+         </div>
+         <div class="example-element-description">
+           <p>Employee Info</p>
+           <table>
+             <tr>
+               <th scope="col">#</th>
+               <th scope="col">Name</th>
+               <th scope="col">Phone</th>
+               <th scope="col">Email</th>
+               <th scope="col">Car</th>
+              </tr>
+              <tbody>
+                <ng-container>
+                <tr *ngFor="let employeeInfo of element.employeeInfos; let pos=index;">
+                  <th scope="row">{{pos+1}}</th>
+                  <td>{{employeeInfo.name}}</td>
+                  <td>{{employeeInfo.phone}}</td>
+                  <td>{{employeeInfo.email}}</td>
+                  <td>{{employeeInfo.car}}</td>
+                  <td><a [routerLink]="['/employee', employeeInfo.employeeId]">Profile Detail</a></td>
+                </tr>
+              </ng-container>
+              </tbody>
+            </table>
+         </div>
+      </div>
+       
+     </td>
+   </ng-container>
+ 
+   <tr mat-header-row *matHeaderRowDef="columnsToDisplay"></tr>
+  <tr mat-row *matRowDef="let element; columns: columnsToDisplay;"
+      class="example-element-row"
+      [class.example-expanded-row]="expandedElement === element"
+      (click)="expandedElement = expandedElement === element ? null : element">
+  </tr>
+  <tr mat-row *matRowDef="let row; columns: ['expandedDetail']" class="example-detail-row"></tr>
+</table>

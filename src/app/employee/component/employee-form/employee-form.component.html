@@ -8,8 +8,7 @@
                 *ngIf="employeeFormControls.title.invalid && employeeFormControls.title.touched && employeeFormControls.title.errors?.required"
             >
                 Title is required
-            </div>
-
+        </div>
             <div 
                 class="alert alert-danger"
                 *ngIf="employeeFormControls.title.invalid && employeeFormControls.title.touched && employeeFormControls.title.errors?.minlength"

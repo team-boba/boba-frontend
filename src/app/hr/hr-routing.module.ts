@@ -1,3 +1,4 @@
+import { HouseManagementComponent } from './component/house-management/house-management.component';
 import { GenerateTokenComponent } from './component/generate-token/generate-token.component';
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
@@ -8,7 +9,12 @@ import { UpdateStatusComponent } from './component/hire-management/update-status
 import { ProfileSummaryComponent } from './component/profile-summary/profile-summary.component';
 import { VisaStatusManagementComponent } from './component/visa-status-management/visa-status-management.component';
 
+
 const routes: Routes = [
+  {
+    path: 'houseManagement',
+    component: HouseManagementComponent
+  },
   {
     path: 'hire',
     component: HireManagementComponent,
@@ -16,20 +22,20 @@ const routes: Routes = [
       { path: ':id', component: UpdateStatusComponent}
     ]
   },
-  { 
+  {
     path: 'generate-token',
     component: GenerateTokenComponent
   },
-  { 
+  {
     path: 'profile',
     component: ProfileSummaryComponent
   },
-  { 
+  {
     path: 'visa-management',
     component: VisaStatusManagementComponent
   },
-  { 
-    path: '', 
+  {
+    path: '',
     component: HrComponent
   }
 ];

@@ -1,3 +1,4 @@
+import { HouseManagementComponent } from './component/house-management/house-management.component';
 import { ConfirmationDialogModule } from './../confirmation-dialog/confirmation-dialog.module';
 import { CUSTOM_ELEMENTS_SCHEMA, NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
@@ -19,6 +20,7 @@ import { MatToolbarModule} from '@angular/material/toolbar';
 @NgModule({
   declarations: [
     HrComponent,
+    HouseManagementComponent,
     HireManagementComponent,
     UpdateStatusComponent,
     GenerateTokenComponent,
